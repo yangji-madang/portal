@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "id": "c1",
+      "name": "NSGC",
+      "links": [
+        { "id": "l1", "name": "찬양대 출석관리", "url": "https://yangji-madang.github.io/nsgc/zion/att.html" }
+      ]
+    },
+    {
+      "id": "c2",
+      "name": "GFC",
+      "links": [
+        { "id": "l2", "name": "KMS관리", "url": "https://yangji-madang.github.io/SLGFC/kms_admin.html" },
+        { "id": "l3", "name": "가입나이관리", "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADMIN PORTAL</title>
+<style>
+  :root { --bg:#f4f6fa; --card:#ffffff; --ink:#1f2937; --sub:#6b7280; --line:#d9dee7; --accent:#1d4ed8; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif; font-size:16px; line-height:1.5; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 16px; }
+  header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  h1 { margin:0; font-size:26px; letter-spacing:1px; }
+  .manage { font-size:13px; color:var(--sub); text-decoration:none; border:1px solid var(--line); padding:5px 10px; border-radius:6px; background:var(--card); }
+  .manage:hover { color:var(--accent); border-color:var(--accent); }
+  .cat { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:12px; }
+  .cat h2 { margin:0 0 8px; font-size:17px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:5px; }
+  .links { display:flex; flex-wrap:wrap; gap:8px; }
+  .links a { display:inline-block; padding:8px 14px; border:1px solid var(--line); border-radius:8px; color:var(--ink); text-decoration:none; font-weight:600; background:#f9fafc; }
+  .links a:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .empty { color:var(--sub); font-size:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ADMIN PORTAL</h1>
+    <a class="manage" href="portal_admin.html">관리</a>
+  </header>
+  <main id="root"><p class="empty">불러오는 중...</p></main>
+</div>
+<script>
+(function () {
+  var root = document.getElementById('root');
+  function render(data) {
+    root.innerHTML = '';
+    var cats = (data && data.categories) || [];
+    if (!cats.length) { root.innerHTML = '<p class="empty">등록된 항목이 없습니다.</p>'; return; }
+    cats.forEach(function (c) {
+      var box = document.createElement('section');
+      box.className = 'cat';
+      var h = document.createElement('h2');
+      h.textContent = c.name;
+      box.appendChild(h);
+      var wrap = document.createElement('div');
+      wrap.className = 'links';
+      if (!c.links || !c.links.length) {
+        var e = document.createElement('span'); e.className = 'empty'; e.textContent = '링크 없음'; wrap.appendChild(e);
+      } else {
+        c.links.forEach(function (l) {
+          var a = document.createElement('a');
+          a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
+          wrap.appendChild(a);
+        });
+      }
+      box.appendChild(wrap);
+      root.appendChild(box);
+    });
+  }
+  fetch('links.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(function () { root.innerHTML = '<p class="empty">links.json을 불러오지 못했습니다.</p>'; });
+})();
+</script>
+</body>
+</html>
