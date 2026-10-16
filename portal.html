@@ -11,12 +11,12 @@
   .wrap { max-width:760px; margin:0 auto; padding:20px 16px; }
   header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
   h1 { margin:0; font-size:26px; letter-spacing:1px; }
-  .manage { font-size:13px; color:var(--sub); text-decoration:none; border:1px solid var(--line); padding:5px 10px; border-radius:6px; background:var(--card); }
+  .manage { font-size:13px; color:var(--sub); text-decoration:none; border:1px solid var(--line); padding:2px 6px; border-radius:6px; background:var(--card); line-height:1.3; }
   .manage:hover { color:var(--accent); border-color:var(--accent); }
   .cat { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:12px; }
   .cat h2 { margin:0 0 8px; font-size:17px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:5px; }
   .links { display:flex; flex-wrap:wrap; gap:8px; }
-  .links a { display:inline-block; padding:8px 14px; border:1px solid var(--line); border-radius:8px; color:var(--ink); text-decoration:none; font-weight:600; background:#f9fafc; }
+  .links a { display:inline-block; padding:2px 6px; line-height:1.3; border:1px solid var(--line); border-radius:8px; color:var(--ink); text-decoration:none; font-weight:600; background:#f9fafc; }
   .links a:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
   .empty { color:var(--sub); font-size:14px; }
 </style>
@@ -57,8 +57,12 @@
       root.appendChild(box);
     });
   }
-  fetch('links.json?t=' + Date.now(), { cache: 'no-store' })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  var API = 'https://api.github.com/repos/yangji-madang/portal/contents/links.json?ref=main';
+  function getJson(u, h) {
+    return fetch(u, { headers: h || {}, cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  getJson(API, { 'Accept': 'application/vnd.github.raw+json' })
+    .catch(function () { return getJson('links.json?t=' + Date.now()); })
     .then(render)
     .catch(function () { root.innerHTML = '<p class="empty">links.json을 불러오지 못했습니다.</p>'; });
 })();
