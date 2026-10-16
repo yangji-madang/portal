@@ -11,8 +11,23 @@
         },
         {
           "id": "xy9s5sg5",
+          "name": "찬양대 출석현",
+          "url": "https://yangji-madang.github.io/nsgc/zion/dash.html"
+        },
+        {
+          "id": "x9sz8i33",
           "name": "찬양곡목 관리",
           "url": "https://yangji-madang.github.io/nsgc/songs_admin.html"
+        },
+        {
+          "id": "xk5o1m40",
+          "name": "찬양곡목",
+          "url": "https://yangji-madang.github.io/nsgc/index.html"
+        },
+        {
+          "id": "xg6ydz8r",
+          "name": "추수감사주일 곡",
+          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving"
         }
       ]
     },
