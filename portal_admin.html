@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ADMIN PORTAL 관리</title>
 <style>
-  :root { --bg:#f4f6fa; --card:#ffffff; --ink:#1f2937; --sub:#6b7280; --line:#d9dee7; --accent:#1d4ed8; --danger:#c62828; --ok:#15803d; }
+  :root { --bg:#f4f6fa; --card:#ffffff; --ink:#1f2937; --sub:#6b7280; --line:#d9dee7; --accent:#1d4ed8; --danger:#c62828; --ok:#15803d; --adm:#c2410c; --adm-bg:#fff1e6; --adm-line:#f0a36b; --adm-ink:#9a3412; --view:#1d4ed8; --view-bg:#e8f0ff; --view-line:#8fb0f5; --view-ink:#1e3a8a; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif; font-size:15px; line-height:1.5; }
   .wrap { max-width:860px; margin:0 auto; padding:20px 16px 60px; }
@@ -27,6 +27,14 @@
   input:focus { outline:2px solid #bfd0fb; border-color:var(--accent); }
   .row { display:flex; gap:6px; margin-bottom:6px; }
   .row .nm { flex:0 0 190px; } .row .ur { flex:1; }
+  .tg { display:flex; gap:4px; align-items:center; flex:none; }
+  .tp { position:relative; cursor:pointer; padding:2px 6px; border:1px solid var(--line); border-radius:6px; font-size:14px; line-height:1.3; color:var(--sub); background:#fff; user-select:none; }
+  .tp input { position:absolute; opacity:0; pointer-events:none; }
+  .tp.admin.on { background:var(--adm); border-color:var(--adm); color:#fff; font-weight:700; }
+  .tp.view.on { background:var(--view); border-color:var(--view); color:#fff; font-weight:700; }
+  .tp.admin:not(.on):hover { border-color:var(--adm); color:var(--adm-ink); background:var(--adm-bg); }
+  .tp.view:not(.on):hover { border-color:var(--view); color:var(--view-ink); background:var(--view-bg); }
+  .tp:focus-within { outline:2px solid #bfd0fb; }
   details.cfg { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:8px 12px; margin-top:16px; }
   details.cfg summary { cursor:pointer; font-weight:700; }
   .cfg-grid { display:grid; grid-template-columns:110px 1fr; gap:6px 8px; margin-top:8px; align-items:center; }
@@ -104,18 +112,25 @@
         var row = el('div', { className: 'row' });
         var nm = el('input', { className: 'nm', value: l.name, placeholder: '링크명' });
         nm.oninput = function () { l.name = nm.value; markDirty(); };
+        var tg = el('div', { className: 'tg' });
+        [['admin', '관리'], ['view', '보기']].forEach(function (o) {
+          var lb = el('label', { className: 'tp ' + o[0] + (l.type === o[0] ? ' on' : '') });
+          var rb = el('input', { type: 'radio', name: 't_' + l.id, checked: l.type === o[0] });
+          rb.onchange = function () { l.type = o[0]; markDirty(); render(); };
+          lb.appendChild(rb); lb.appendChild(document.createTextNode(o[1])); tg.appendChild(lb);
+        });
         var ur = el('input', { className: 'ur', value: l.url, placeholder: 'https://' });
         ur.oninput = function () { l.url = ur.value; markDirty(); };
         var d = el('button', { className: 'danger', textContent: '삭제' });
         d.onclick = function () {
           if (confirm('"' + l.name + '" 링크를 삭제할까요?')) { c.links.splice(li, 1); markDirty(); render(); }
         };
-        row.appendChild(nm); row.appendChild(ur); row.appendChild(d);
+        row.appendChild(nm); row.appendChild(tg); row.appendChild(ur); row.appendChild(d);
         box.appendChild(row);
       });
 
       var add = el('button', { textContent: '+ 링크 추가' });
-      add.onclick = function () { c.links.push({ id: uid(), name: '', url: '' }); markDirty(); render(); };
+      add.onclick = function () { c.links.push({ id: uid(), name: '', url: '', type: 'view' }); markDirty(); render(); };
       box.appendChild(add);
       rootEl.appendChild(box);
     });
@@ -137,7 +152,7 @@
   function cleaned() {
     return {
       categories: data.categories.map(function (c) {
-        return { id: c.id, name: c.name.trim(), links: c.links.map(function (l) { return { id: l.id, name: l.name.trim(), url: l.url.trim() }; }) };
+        return { id: c.id, name: c.name.trim(), links: c.links.map(function (l) { return { id: l.id, name: l.name.trim(), url: l.url.trim(), type: l.type === 'admin' ? 'admin' : 'view' }; }) };
       })
     };
   }
@@ -202,7 +217,7 @@
     }
     getJson(api, h)
       .catch(function () { return getJson('links.json?t=' + Date.now()); })
-      .then(function (j) { data = j; render(); })
+      .then(function (j) { j.categories.forEach(function (c) { c.links.forEach(function (l) { if (l.type !== 'admin') l.type = 'view'; }); }); data = j; render(); })
       .catch(function () { setStatus('links.json을 불러오지 못했습니다. 새로 등록해 주세요.', 'err'); render(); });
   })();
 })();

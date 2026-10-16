@@ -7,27 +7,32 @@
         {
           "id": "l1",
           "name": "찬양대 출석관리",
-          "url": "https://yangji-madang.github.io/nsgc/zion/att.html"
+          "url": "https://yangji-madang.github.io/nsgc/zion/att.html",
+          "type": "admin"
         },
         {
           "id": "xy9s5sg5",
           "name": "찬양대 출석현황",
-          "url": "https://yangji-madang.github.io/nsgc/zion/dash.html"
+          "url": "https://yangji-madang.github.io/nsgc/zion/dash.html",
+          "type": "view"
         },
         {
           "id": "x9sz8i33",
           "name": "찬양곡목 관리",
-          "url": "https://yangji-madang.github.io/nsgc/songs_admin.html"
+          "url": "https://yangji-madang.github.io/nsgc/songs_admin.html",
+          "type": "admin"
         },
         {
           "id": "xk5o1m40",
           "name": "찬양곡목",
-          "url": "https://yangji-madang.github.io/nsgc/index.html"
+          "url": "https://yangji-madang.github.io/nsgc/index.html",
+          "type": "view"
         },
         {
           "id": "xg6ydz8r",
           "name": "추수감사주일 곡",
-          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving"
+          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving",
+          "type": "view"
         }
       ]
     },
@@ -38,22 +43,26 @@
         {
           "id": "l2",
           "name": "KMS관리",
-          "url": "https://yangji-madang.github.io/SLGFC/kms_admin.html"
+          "url": "https://yangji-madang.github.io/SLGFC/kms_admin.html",
+          "type": "admin"
         },
         {
           "id": "xxs0d83n",
           "name": "KMS보기",
-          "url": "https://yangji-madang.github.io/SLGFC/kms_gate.html"
+          "url": "https://yangji-madang.github.io/SLGFC/kms_gate.html",
+          "type": "view"
         },
         {
           "id": "x0q3yt2r",
           "name": "가입나이관리",
-          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html"
+          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html",
+          "type": "admin"
         },
         {
           "id": "xbmz1mer",
           "name": "가입나이보기",
-          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html"
+          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html",
+          "type": "view"
         }
       ]
     }

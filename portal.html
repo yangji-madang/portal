@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ADMIN PORTAL</title>
 <style>
-  :root { --bg:#f4f6fa; --card:#ffffff; --ink:#1f2937; --sub:#6b7280; --line:#d9dee7; --accent:#1d4ed8; }
+  :root { --bg:#f4f6fa; --card:#ffffff; --ink:#1f2937; --sub:#6b7280; --line:#d9dee7; --accent:#1d4ed8; --adm:#c2410c; --adm-bg:#fff1e6; --adm-line:#f0a36b; --adm-ink:#9a3412; --view:#1d4ed8; --view-bg:#e8f0ff; --view-line:#8fb0f5; --view-ink:#1e3a8a; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif; font-size:16px; line-height:1.5; }
   .wrap { max-width:760px; margin:0 auto; padding:20px 16px; }
@@ -17,7 +17,10 @@
   .cat h2 { margin:0 0 8px; font-size:17px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:5px; }
   .links { display:flex; flex-wrap:wrap; gap:8px; }
   .links a { display:inline-block; padding:2px 6px; line-height:1.3; border:1px solid var(--line); border-radius:8px; color:var(--ink); text-decoration:none; font-weight:600; background:#f9fafc; }
-  .links a:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .links a.admin { background:var(--adm-bg); border-color:var(--adm-line); color:var(--adm-ink); }
+  .links a.view { background:var(--view-bg); border-color:var(--view-line); color:var(--view-ink); }
+  .links a.admin:hover { background:var(--adm); border-color:var(--adm); color:#fff; }
+  .links a.view:hover { background:var(--view); border-color:var(--view); color:#fff; }
   .empty { color:var(--sub); font-size:14px; }
 </style>
 </head>
@@ -49,7 +52,7 @@
       } else {
         c.links.forEach(function (l) {
           var a = document.createElement('a');
-          a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
+          a.className = l.type === 'admin' ? 'admin' : 'view'; a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
           wrap.appendChild(a);
         });
       }
