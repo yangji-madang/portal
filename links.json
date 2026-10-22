@@ -30,18 +30,24 @@
         },
         {
           "id": "xg6ydz8r",
+          "name": "추수감사주일 관리",
+          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving_admin.html",
+          "type": "admin"
+        },
+        {
+          "id": "xb3w0e81",
           "name": "추수감사주일 곡",
           "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving",
           "type": "view"
         },
         {
-          "id": "xb3w0e81",
+          "id": "x7m5pxux",
           "name": "주보 작성",
           "url": "https://yangji-madang.github.io/nsgc/zion_jubo_admin.html",
           "type": "admin"
         },
         {
-          "id": "x7m5pxux",
+          "id": "x69aqcb2",
           "name": "주보 보기",
           "url": "https://yangji-madang.github.io/nsgc/zion_jubo.html",
           "type": "view"
