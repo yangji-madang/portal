@@ -84,9 +84,15 @@
         },
         {
           "id": "xytkx2f8",
-          "name": "럽맘고객",
+          "name": "럽맘고객-윤",
           "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-db.html",
           "type": "admin"
+        },
+        {
+          "id": "x467ud74",
+          "name": "럽맘고객-오",
+          "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-osm.html",
+          "type": "view"
         }
       ]
     }
