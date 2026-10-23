@@ -81,6 +81,12 @@
           "name": "가입나이보기",
           "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html",
           "type": "view"
+        },
+        {
+          "id": "xytkx2f8",
+          "name": "럽맘고객",
+          "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-db.html",
+          "type": "admin"
         }
       ]
     }
