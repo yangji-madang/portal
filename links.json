@@ -93,6 +93,18 @@
           "name": "럽맘고객-오",
           "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-osm.html",
           "type": "view"
+        },
+        {
+          "id": "xtfz6df5",
+          "name": "럽맘-출산육아지원금",
+          "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child.html",
+          "type": "view"
+        },
+        {
+          "id": "xw45f2sn",
+          "name": "럽맘-출산육아지원관리",
+          "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child_admin.html",
+          "type": "view"
         }
       ]
     }
