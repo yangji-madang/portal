@@ -20,7 +20,8 @@
           "id": "x9sz8i33",
           "name": "찬양곡목 관리",
           "url": "https://yangji-madang.github.io/nsgc/songs_admin.html",
-          "type": "admin"
+          "type": "admin",
+          "br": true
         },
         {
           "id": "xk5o1m40",
@@ -44,7 +45,8 @@
           "id": "x7m5pxux",
           "name": "주보 작성",
           "url": "https://yangji-madang.github.io/nsgc/zion_jubo_admin.html",
-          "type": "admin"
+          "type": "admin",
+          "br": true
         },
         {
           "id": "x69aqcb2",
