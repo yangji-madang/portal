@@ -36,6 +36,16 @@
 <script>
 (function () {
   var root = document.getElementById('root');
+  /* lines 형식이 있으면 그대로, 없으면 기존 links(+br) 형식을 줄로 변환 */
+  function linesOf(c) {
+    if (Array.isArray(c.lines)) return c.lines.map(function (ln) { return (ln && ln.links) || []; });
+    var out = [], cur = null;
+    (c.links || []).forEach(function (l) {
+      if (!cur || l.br === true) { cur = []; out.push(cur); }
+      cur.push(l);
+    });
+    return out;
+  }
   function render(data) {
     root.innerHTML = '';
     var cats = (data && data.categories) || [];
@@ -48,19 +58,19 @@
       box.appendChild(h);
       var wrap = document.createElement('div');
       wrap.className = 'links';
-      if (!c.links || !c.links.length) {
+      var lines = linesOf(c).filter(function (ln) { return ln.length; });
+      if (!lines.length) {
         var e = document.createElement('span'); e.className = 'empty'; e.textContent = '링크 없음'; wrap.appendChild(e);
       } else {
-        var line = null;
-        c.links.forEach(function (l) {
-          if (!line || l.br === true) {
-            line = document.createElement('div');
-            line.className = 'line';
-            wrap.appendChild(line);
-          }
-          var a = document.createElement('a');
-          a.className = l.type === 'admin' ? 'admin' : 'view'; a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
-          line.appendChild(a);
+        lines.forEach(function (ln) {
+          var line = document.createElement('div');
+          line.className = 'line';
+          ln.forEach(function (l) {
+            var a = document.createElement('a');
+            a.className = l.type === 'admin' ? 'admin' : 'view'; a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
+            line.appendChild(a);
+          });
+          wrap.appendChild(line);
         });
       }
       box.appendChild(wrap);
