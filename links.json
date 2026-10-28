@@ -104,7 +104,19 @@
           "id": "xw45f2sn",
           "name": "럽맘-출산육아지원관리",
           "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child_admin.html",
+          "type": "admin"
+        },
+        {
+          "id": "xqosd1pr",
+          "name": "정부지원정책 보기",
+          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support.html",
           "type": "view"
+        },
+        {
+          "id": "x61zxw3m",
+          "name": "정부지원정책 관리",
+          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_admin.html",
+          "type": "admin"
         }
       ]
     }
