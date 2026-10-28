@@ -117,6 +117,12 @@
           "name": "정부지원정책 관리",
           "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_admin.html",
           "type": "admin"
+        },
+        {
+          "id": "xxc2ookz",
+          "name": "정보지원정책 내회사찾기",
+          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_match.html",
+          "type": "view"
         }
       ]
     }
