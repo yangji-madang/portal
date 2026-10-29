@@ -48,13 +48,13 @@
             },
             {
               "id": "xd5zjd6v",
-              "name": "시온찬양대 찬양곡목 이력",
+              "name": "시온찬양대 찬양이력 관리",
               "url": "https://yangji-madang.github.io/nsgc/zion-hymnhistory_admin.html",
               "type": "admin"
             },
             {
               "id": "x8rfudqb",
-              "name": "시온찬양대 찬양곡목 이력",
+              "name": "시온찬양대 찬양이력 보기",
               "url": "https://yangji-madang.github.io/nsgc/zion-hymnhistory.html",
               "type": "view"
             }
