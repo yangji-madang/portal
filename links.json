@@ -3,131 +3,160 @@
     {
       "id": "c1",
       "name": "NSGC",
-      "links": [
+      "lines": [
         {
-          "id": "l1",
-          "name": "찬양대 출석관리",
-          "url": "https://yangji-madang.github.io/nsgc/zion/att.html",
-          "type": "admin"
+          "links": [
+            {
+              "id": "l1",
+              "name": "찬양대 출석관리",
+              "url": "https://yangji-madang.github.io/nsgc/zion/att.html",
+              "type": "admin"
+            },
+            {
+              "id": "xy9s5sg5",
+              "name": "찬양대 출석현황",
+              "url": "https://yangji-madang.github.io/nsgc/zion/dash.html",
+              "type": "view"
+            }
+          ]
         },
         {
-          "id": "xy9s5sg5",
-          "name": "찬양대 출석현황",
-          "url": "https://yangji-madang.github.io/nsgc/zion/dash.html",
-          "type": "view"
+          "links": [
+            {
+              "id": "x9sz8i33",
+              "name": "찬양곡목 관리",
+              "url": "https://yangji-madang.github.io/nsgc/songs_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xk5o1m40",
+              "name": "찬양곡목",
+              "url": "https://yangji-madang.github.io/nsgc/index.html",
+              "type": "view"
+            },
+            {
+              "id": "xg6ydz8r",
+              "name": "추수감사주일 관리",
+              "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xb3w0e81",
+              "name": "추수감사주일 곡",
+              "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving",
+              "type": "view"
+            },
+            {
+              "id": "x8rfudqb",
+              "name": "시온찬양대 찬양곡목 이력",
+              "url": "https://yangji-madang.github.io/nsgc/zion-hymnhistory.html",
+              "type": "admin"
+            }
+          ]
         },
         {
-          "id": "x9sz8i33",
-          "name": "찬양곡목 관리",
-          "url": "https://yangji-madang.github.io/nsgc/songs_admin.html",
-          "type": "admin",
-          "br": true
-        },
-        {
-          "id": "xk5o1m40",
-          "name": "찬양곡목",
-          "url": "https://yangji-madang.github.io/nsgc/index.html",
-          "type": "view"
-        },
-        {
-          "id": "xg6ydz8r",
-          "name": "추수감사주일 관리",
-          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving_admin.html",
-          "type": "admin"
-        },
-        {
-          "id": "xb3w0e81",
-          "name": "추수감사주일 곡",
-          "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving",
-          "type": "view"
-        },
-        {
-          "id": "x7m5pxux",
-          "name": "주보 작성",
-          "url": "https://yangji-madang.github.io/nsgc/zion_jubo_admin.html",
-          "type": "admin",
-          "br": true
-        },
-        {
-          "id": "x69aqcb2",
-          "name": "주보 보기",
-          "url": "https://yangji-madang.github.io/nsgc/zion_jubo.html",
-          "type": "view"
+          "links": [
+            {
+              "id": "x7m5pxux",
+              "name": "주보 작성",
+              "url": "https://yangji-madang.github.io/nsgc/zion_jubo_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "x69aqcb2",
+              "name": "주보 보기",
+              "url": "https://yangji-madang.github.io/nsgc/zion_jubo.html",
+              "type": "view"
+            }
+          ]
         }
       ]
     },
     {
       "id": "c2",
       "name": "GFC",
-      "links": [
+      "lines": [
         {
-          "id": "l2",
-          "name": "KMS관리",
-          "url": "https://yangji-madang.github.io/SLGFC/kms_admin.html",
-          "type": "admin"
+          "links": [
+            {
+              "id": "l2",
+              "name": "KMS관리",
+              "url": "https://yangji-madang.github.io/SLGFC/kms_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xxs0d83n",
+              "name": "KMS보기",
+              "url": "https://yangji-madang.github.io/SLGFC/kms_gate.html",
+              "type": "view"
+            }
+          ]
         },
         {
-          "id": "xxs0d83n",
-          "name": "KMS보기",
-          "url": "https://yangji-madang.github.io/SLGFC/kms_gate.html",
-          "type": "view"
+          "links": [
+            {
+              "id": "x0q3yt2r",
+              "name": "가입나이관리",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xbmz1mer",
+              "name": "가입나이보기",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html",
+              "type": "view"
+            }
+          ]
         },
         {
-          "id": "x0q3yt2r",
-          "name": "가입나이관리",
-          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html",
-          "type": "admin",
-          "br": true
+          "links": [
+            {
+              "id": "x61zxw3m",
+              "name": "정부지원정책 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xqosd1pr",
+              "name": "정부지원정책 보기",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support.html",
+              "type": "view"
+            },
+            {
+              "id": "xxc2ookz",
+              "name": "정보지원정책 내회사찾기",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_match.html",
+              "type": "view"
+            }
+          ]
         },
         {
-          "id": "xbmz1mer",
-          "name": "가입나이보기",
-          "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html",
-          "type": "view"
-        },
-        {
-          "id": "x61zxw3m",
-          "name": "정부지원정책 관리",
-          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_admin.html",
-          "type": "admin",
-          "br": true
-        },
-        {
-          "id": "xqosd1pr",
-          "name": "정부지원정책 보기",
-          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support.html",
-          "type": "view"
-        },
-        {
-          "id": "xxc2ookz",
-          "name": "정보지원정책 내회사찾기",
-          "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_match.html",
-          "type": "view"
-        },
-        {
-          "id": "xytkx2f8",
-          "name": "럽맘고객-윤",
-          "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-db.html",
-          "type": "admin",
-          "br": true
-        },
-        {
-          "id": "x467ud74",
-          "name": "럽맘고객-오",
-          "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-osm.html",
-          "type": "view"
-        },
-        {
-          "id": "xtfz6df5",
-          "name": "럽맘-출산육아지원금",
-          "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child.html",
-          "type": "view"
-        },
-        {
-          "id": "xw45f2sn",
-          "name": "럽맘-출산육아지원관리",
-          "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child_admin.html",
-          "type": "admin"
+          "links": [
+            {
+              "id": "xytkx2f8",
+              "name": "럽맘고객-윤",
+              "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-db.html",
+              "type": "admin"
+            },
+            {
+              "id": "x467ud74",
+              "name": "럽맘고객-오",
+              "url": "https://yangji-madang.github.io/SLGFC/luvmom/luvmom-osm.html",
+              "type": "view"
+            },
+            {
+              "id": "xtfz6df5",
+              "name": "럽맘-출산육아지원금",
+              "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child.html",
+              "type": "view"
+            },
+            {
+              "id": "xw45f2sn",
+              "name": "럽맘-출산육아지원관리",
+              "url": "https://yangji-madang.github.io/SLGFC/luvmom/baby_child_admin.html",
+              "type": "admin"
+            }
+          ]
         }
       ]
     }
