@@ -7,6 +7,18 @@
         {
           "links": [
             {
+              "id": "xj03podj",
+              "name": "시온포털 관리",
+              "url": "https://yangji-madang.github.io/nsgc/zion-portal-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xgiseu85",
+              "name": "시온포털",
+              "url": "https://yangji-madang.github.io/nsgc/zion-portal.html",
+              "type": "view"
+            },
+            {
               "id": "l1",
               "name": "찬양대 출석관리",
               "url": "https://yangji-madang.github.io/nsgc/zion/att.html",
