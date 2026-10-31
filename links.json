@@ -17,7 +17,11 @@
               "name": "시온포털",
               "url": "https://yangji-madang.github.io/nsgc/zion-portal.html",
               "type": "view"
-            },
+            }
+          ]
+        },
+        {
+          "links": [
             {
               "id": "l1",
               "name": "찬양대 출석관리",
@@ -29,11 +33,7 @@
               "name": "찬양대 출석현황",
               "url": "https://yangji-madang.github.io/nsgc/zion/dash.html",
               "type": "view"
-            }
-          ]
-        },
-        {
-          "links": [
+            },
             {
               "id": "x9sz8i33",
               "name": "찬양곡목 관리",
@@ -57,7 +57,11 @@
               "name": "추수감사주일 곡",
               "url": "https://yangji-madang.github.io/nsgc/2026_Zion_Thanksgiving",
               "type": "view"
-            },
+            }
+          ]
+        },
+        {
+          "links": [
             {
               "id": "xd5zjd6v",
               "name": "시온찬양대 찬양이력 관리",
@@ -84,6 +88,16 @@
               "id": "x69aqcb2",
               "name": "주보 보기",
               "url": "https://yangji-madang.github.io/nsgc/zion_jubo.html",
+              "type": "view"
+            }
+          ]
+        },
+        {
+          "links": [
+            {
+              "id": "xuiy2ncb",
+              "name": "2026 하모니클래스(남자)",
+              "url": "https://yangji-madang.github.io/nsgc/harmony_class.html#/",
               "type": "view"
             }
           ]
