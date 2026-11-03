@@ -89,6 +89,18 @@
               "name": "주보 보기",
               "url": "https://yangji-madang.github.io/nsgc/zion_jubo.html",
               "type": "view"
+            },
+            {
+              "id": "x1oizsjj",
+              "name": "기도순서관리",
+              "url": "https://yangji-madang.github.io/nsgc/prayer_list.html",
+              "type": "view"
+            },
+            {
+              "id": "x9919fot",
+              "name": "생일관리",
+              "url": "https://yangji-madang.github.io/nsgc/birth.html",
+              "type": "view"
             }
           ]
         },
