@@ -101,6 +101,12 @@
               "name": "생일관리",
               "url": "https://yangji-madang.github.io/nsgc/birth.html",
               "type": "view"
+            },
+            {
+              "id": "xv4aosjy",
+              "name": "기도제목 리스트",
+              "url": "https://docs.google.com/spreadsheets/d/1qW-3iKDgs1FZMv44cbYvO5p0NBcuHzSlX-J53MhnJS0/edit?usp=sharing",
+              "type": "view"
             }
           ]
         },
