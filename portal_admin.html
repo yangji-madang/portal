@@ -97,8 +97,14 @@
   function setStatus(msg, cls) { statusEl.textContent = msg || ''; statusEl.className = cls || ''; }
   function markDirty() { dirty = true; setStatus('저장되지 않은 변경 사항이 있습니다.', 'dirty'); }
   function getCfg() {
-    try { return Object.assign({}, DEF, JSON.parse(localStorage.getItem('portalCfg') || '{}')); }
-    catch (e) { return Object.assign({}, DEF); }
+    var c = Object.assign({}, DEF), st = {};
+    try { st = JSON.parse(localStorage.getItem('portalCfg') || '{}') || {}; } catch (e) { st = {}; }
+    Object.keys(DEF).forEach(function (k) {
+      var v = typeof st[k] === 'string' ? st[k].trim() : '';
+      if (v || k === 'token') c[k] = v;
+    });
+    if (!c.token) c.token = '';
+    return c;
   }
   function el(tag, props) {
     var n = document.createElement(tag);
@@ -300,6 +306,16 @@
     return btoa(bin);
   }
 
+  async function ghError(res) {
+    var msg = '';
+    try {
+      var j = await res.json();
+      msg = j.message || '';
+      if (j.errors && j.errors.length) msg += ' ' + JSON.stringify(j.errors);
+    } catch (e) {}
+    return new Error(msg ? msg + ' (' + res.status + ')' : '(' + res.status + ')');
+  }
+
   async function save() {
     var err = validate();
     if (err) { setStatus(err, 'err'); return; }
@@ -308,18 +324,29 @@
     setStatus('저장 중...', '');
     var api = 'https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + cfg.path;
     var headers = { 'Authorization': 'Bearer ' + cfg.token, 'Accept': 'application/vnd.github+json' };
+    var content = toB64(JSON.stringify(cleaned(), null, 2) + '\n');
     try {
-      var sha;
-      var g = await fetch(api + '?ref=' + encodeURIComponent(cfg.branch), { headers: headers });
-      if (g.ok) sha = (await g.json()).sha;
-      else if (g.status !== 404) throw new Error('조회 실패 (' + g.status + ')');
-      var body = { message: 'Update ADMIN PORTAL links', content: toB64(JSON.stringify(cleaned(), null, 2) + '\n'), branch: cfg.branch };
-      if (sha) body.sha = sha;
-      var p = await fetch(api, { method: 'PUT', headers: Object.assign({ 'Content-Type': 'application/json' }, headers), body: JSON.stringify(body) });
-      if (!p.ok) throw new Error('저장 실패 (' + p.status + ')');
-      dirty = false;
-      setStatus('저장되었습니다. 보기 페이지에 바로 반영됩니다.', 'ok');
-    } catch (e) { setStatus('오류: ' + e.message, 'err'); }
+      for (var attempt = 0; attempt < 2; attempt++) {
+        var sha;
+        var g = await fetch(api + '?ref=' + encodeURIComponent(cfg.branch) + '&t=' + Date.now(), { headers: headers, cache: 'no-store' });
+        if (g.ok) {
+          var info = await g.json();
+          if (Array.isArray(info) || !info.sha) throw new Error('저장 경로(' + cfg.path + ')가 파일이 아닙니다. 저장 설정을 확인해 주세요.');
+          sha = info.sha;
+        } else if (g.status === 404) { sha = undefined; }
+        else throw await ghError(g);
+        var body = { message: 'Update ADMIN PORTAL links', content: content, branch: cfg.branch };
+        if (sha) body.sha = sha;
+        var p = await fetch(api, { method: 'PUT', headers: Object.assign({ 'Content-Type': 'application/json' }, headers), body: JSON.stringify(body) });
+        if (p.ok) {
+          dirty = false;
+          setStatus('저장되었습니다. 보기 페이지에 바로 반영됩니다.', 'ok');
+          return;
+        }
+        if (attempt === 0 && (p.status === 409 || p.status === 422)) continue;
+        throw await ghError(p);
+      }
+    } catch (e) { setStatus('저장 실패: ' + e.message, 'err'); }
   }
 
   function download() {
