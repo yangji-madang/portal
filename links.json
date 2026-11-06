@@ -139,6 +139,12 @@
               "name": "KMS보기",
               "url": "https://yangji-madang.github.io/SLGFC/kms_gate.html",
               "type": "view"
+            },
+            {
+              "id": "xbk5cck8",
+              "name": "Footer 담당자 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/contacts_admin.html",
+              "type": "admin"
             }
           ]
         },
