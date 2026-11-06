@@ -145,6 +145,34 @@
         {
           "links": [
             {
+              "id": "x83kgnfk",
+              "name": "법인세 개요 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "x80th13v",
+              "name": "상속세 개요 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inhtax_info-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xpy2lxcd",
+              "name": "증여세 개요 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gifttax_info-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xs20p812",
+              "name": "종세 개요 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inctax_info-admin.html",
+              "type": "admin"
+            }
+          ]
+        },
+        {
+          "links": [
+            {
               "id": "x0q3yt2r",
               "name": "가입나이관리",
               "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age_admin.html",
