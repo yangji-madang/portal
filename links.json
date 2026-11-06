@@ -146,26 +146,54 @@
           "links": [
             {
               "id": "x83kgnfk",
-              "name": "법인세 개요 관리",
+              "name": "법인세 개요 관리(상세)",
               "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info-admin.html",
               "type": "admin"
             },
             {
               "id": "x80th13v",
-              "name": "상속세 개요 관리",
+              "name": "상속세 개요 관리(상세)",
               "url": "https://yangji-madang.github.io/SLGFC/consult/inhtax_info-admin.html",
               "type": "admin"
             },
             {
               "id": "xpy2lxcd",
-              "name": "증여세 개요 관리",
+              "name": "증여세 개요 관리(상세)",
               "url": "https://yangji-madang.github.io/SLGFC/consult/gifttax_info-admin.html",
               "type": "admin"
             },
             {
               "id": "xs20p812",
-              "name": "종소세 개요 관리",
+              "name": "종소세 개요 관리(상세)",
               "url": "https://yangji-madang.github.io/SLGFC/consult/inctax_info-admin.html",
+              "type": "admin"
+            }
+          ]
+        },
+        {
+          "links": [
+            {
+              "id": "x8m9rpj4",
+              "name": "법인세 개요 관리(인포)",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info-graph-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xrdjjw7j",
+              "name": "상속세 개요 관리(인포)",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inhtax_info-graph-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xlb8uatr",
+              "name": "증여세 개요 관리(인포)",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gifttax_info-graph-admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xbmyy8fp",
+              "name": "종소세 개요 관리(인포)",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inctax_info-graph-admin.html",
               "type": "admin"
             }
           ]
