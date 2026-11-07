@@ -109,6 +109,15 @@ td.c{text-align:center;white-space:nowrap}
   <div class="pv" id="pv"></div>
 </div>
 
+<div class="box" id="rsBox"><b>기사 재검색</b>
+  <div class="row" style="margin-top:6px">
+    <span>갱신 대상 파일: <b id="rsFile"></b> <span id="rsSlot"></span></span>
+    <button class="b pri" id="bRs">재검색 요청</button>
+    <button class="b" id="bRsCp">요청문 복사</button>
+  </div>
+  <div class="hint">대상 파일은 정기 검색시간(07:00·09:00) 기준 가장 최근 회차로 자동 정해집니다(07시 이전은 전날 2차). 요청은 news/news_research_request.json으로 저장되며, 이 페이지가 직접 검색하지는 않습니다. Claude에게 ‘재검색 요청 처리해줘’라고 말하거나 복사한 요청문을 전달하면 현재 저장된 설정으로 기사를 다시 모아 대상 파일을 갱신합니다.</div>
+</div>
+
 <div class="savebar">
   <button class="b pri" id="bSave">GitHub에 저장</button>
   <button class="b" id="bDl">news_config.json 내려받기</button>
@@ -285,6 +294,25 @@ $("bSave").onclick=save;$("bDl").onclick=dl;$("bReload").onclick=load;
 $("bDef").onclick=function(){if(confirm("기본값으로 복원할까요? (언론사 목록은 저장본에서 다시 불러오세요)"))apply(DEF)};
 $("bCfg").onclick=function(){var b=$("cfgBox");b.style.display=b.style.display==="none"?"block":"none";$("gOwner").value=G.owner;$("gRepo").value=G.repo;$("gPath").value=G.path;$("gBranch").value=G.branch;$("gToken").value=G.token};
 $("gOk").onclick=function(){G={owner:$("gOwner").value.trim(),repo:$("gRepo").value.trim(),path:$("gPath").value.trim(),branch:$("gBranch").value.trim(),token:$("gToken").value.trim()};localStorage.setItem("newsCfg",JSON.stringify(G));$("cfgBox").style.display="none";status("저장 설정을 보관했습니다.","ok")};
+
+function rsTarget(){var d=new Date(),h=d.getHours(),n=1,sl="09:00";if(h<7){d=new Date(d.getTime()-864e5);n=2}else if(h<9){n=1;sl="07:00"}else n=2;
+ if(h<7)sl="09:00";var f="news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+"_"+n+".html";return{file:f,slot:sl,n:n}}
+function rsShow(){var t=rsTarget();$("rsFile").textContent=t.file;$("rsSlot").textContent="("+t.slot+" 회차 기준)"}
+function rsText(){var t=rsTarget();return"설정페이지(news/news_config.json) 기준으로 기사 재검색해서 "+t.file+" 업데이트해줘."}
+async function rsReq(){
+ if(!G.token){status("토큰이 없습니다. ‘저장 설정’에 입력하거나 ‘요청문 복사’를 이용해 주세요.","err");return}
+ var t=rsTarget(),H={"Authorization":"Bearer "+G.token,"Accept":"application/vnd.github+json"},u="https://api.github.com/repos/"+G.owner+"/"+G.repo+"/contents/news/news_research_request.json";
+ try{status("재검색 요청 저장 중…","info");var sha,g=await fetch(u+"?ref="+encodeURIComponent(G.branch),{headers:H});
+  if(g.ok){sha=(await g.json()).sha}else if(g.status!==404){throw new Error("조회 실패 "+g.status)}
+  var o={requestedAt:new Date().toISOString(),slot:t.slot,targetFile:"news/"+t.file,config:"news/news_config.json",status:"pending"};
+  var b={message:"기사 재검색 요청 ("+t.file+")",content:b64(JSON.stringify(o,null,2)+"\n"),branch:G.branch};if(sha)b.sha=sha;
+  var p=await fetch(u,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify(b)});
+  if(!p.ok)throw new Error("저장 실패 "+p.status);
+  status("재검색 요청을 저장했습니다("+t.file+"). Claude에게 ‘재검색 요청 처리해줘’라고 알려 주세요.","ok")}
+ catch(e){status(e.message+" — ‘요청문 복사’를 이용해 주세요.","err")}}
+$("bRs").onclick=rsReq;
+$("bRsCp").onclick=function(){var x=rsText();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(function(){status("요청문을 복사했습니다: "+x,"ok")},function(){prompt("아래 요청문을 복사해 Claude에게 전달하세요.",x)})};
+rsShow();setInterval(rsShow,60000);
 $("cp").textContent="(C)"+new Date().getFullYear()+". YOON HYUNCHUL,  ALL RIGHT RESERVED.";
 show("p-title");load();
 })();
