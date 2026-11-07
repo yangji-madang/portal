@@ -226,6 +226,13 @@
       "required": true,
       "enabled": true,
       "note": "세제, 경제, 보험"
+    },
+    {
+      "name": "청년의사",
+      "url": "https://www.docdocdoc.co.kr/",
+      "required": true,
+      "enabled": true,
+      "note": "건강, 의"
     }
   ],
   "fonts": {
