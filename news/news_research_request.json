@@ -3,5 +3,6 @@
   "slot": "09:00",
   "targetFile": "news/news_261107_2.html",
   "config": "news/news_config.json",
-  "status": "pending"
+  "status": "done",
+  "note": "11.06~11.07 재검색(2차, 신규 매체 포함): 경제 2건·금융 1건 추가(총 30건). 메디게이트·청년의사·메트로신문·보험저널·조세일보·뉴스1 기간 내 신규 확인분 없음, 법률 없음"
 }
