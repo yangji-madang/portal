@@ -104,7 +104,7 @@
     {
       "name": "ZDNet Korea",
       "url": "https://zdnet.co.kr",
-      "required": false,
+      "required": true,
       "enabled": true,
       "note": "IT 섹션 우선"
     },
@@ -118,7 +118,7 @@
     {
       "name": "뉴시스",
       "url": "https://www.newsis.com",
-      "required": false,
+      "required": true,
       "enabled": true,
       "note": ""
     },
@@ -132,7 +132,7 @@
     {
       "name": "조세금융신문",
       "url": "https://www.tfmedia.co.kr",
-      "required": false,
+      "required": true,
       "enabled": true,
       "note": "정책(세제)·금융 섹션 우선"
     },
@@ -205,6 +205,27 @@
       "required": false,
       "enabled": false,
       "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "보험저널",
+      "url": "https://www.insjournal.co.kr/",
+      "required": true,
+      "enabled": true,
+      "note": "보험"
+    },
+    {
+      "name": "보험신보",
+      "url": "https://www.insweek.co.kr/index.html",
+      "required": true,
+      "enabled": true,
+      "note": "보험"
+    },
+    {
+      "name": "조세일보",
+      "url": "https://www.joseilbo.com/index.php",
+      "required": true,
+      "enabled": true,
+      "note": "세제, 경제, 보험"
     }
   ],
   "fonts": {
