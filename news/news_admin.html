@@ -49,6 +49,7 @@ td.c{text-align:center;white-space:nowrap}
 <div class="wrap">
 <h1>윤대감 세상 훑어보기 · 페이지 관리</h1>
 <p class="sub">여기서 저장한 <b>news_config.json</b> 설정대로 기사 검색과 뉴스레터(news_yymmdd.html) 제작이 이루어집니다.</p>
+<div class="row" style="margin:6px 0"><button class="b pri" id="bView">검색결과 보기</button> <span id="viewInfo" class="hint"></span></div>
 <div id="st" class="status"></div>
 
 <div class="tabs" id="tabs"></div>
@@ -312,6 +313,15 @@ async function rsReq(){
  catch(e){status(e.message+" — ‘요청문 복사’를 이용해 주세요.","err")}}
 $("bRs").onclick=rsReq;
 $("bRsCp").onclick=function(){var x=rsText();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(function(){status("요청문을 복사했습니다: "+x,"ok")},function(){prompt("아래 요청문을 복사해 Claude에게 전달하세요.",x)})};
+
+function nm(d,n){return"news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+"_"+n+".html"}
+async function viewLatest(){
+ var t=rsTarget(),m=t.file.match(/news_(\d\d)(\d\d)(\d\d)_(\d)/),d=new Date(2000+ +m[1],+m[2]-1,+m[3]),n=+m[4],c=[];
+ for(var i=0;i<14;i++){c.push(nm(d,n));if(n===2)n=1;else{n=2;d=new Date(d.getTime()-864e5)}}
+ $("viewInfo").textContent="확인 중…";
+ for(var k=0;k<c.length;k++){try{var r=await fetch(c[k],{method:"HEAD",cache:"no-store"});if(r.ok){$("viewInfo").textContent="최신 파일: "+c[k];window.open(c[k],"_blank");return}}catch(e){$("viewInfo").textContent="최신 파일: "+c[0]+" (존재 여부 미확인)";window.open(c[0],"_blank");return}}
+ $("viewInfo").textContent="";status("최근 2주 내 검색결과 파일을 찾지 못했습니다.","err")}
+$("bView").onclick=viewLatest;
 rsShow();setInterval(rsShow,60000);
 $("cp").textContent="(C)"+new Date().getFullYear()+". YOON HYUNCHUL,  ALL RIGHT RESERVED.";
 show("p-title");load();
