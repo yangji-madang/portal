@@ -269,6 +269,16 @@
               "type": "admin"
             }
           ]
+        },
+        {
+          "links": [
+            {
+              "id": "xc40hjaz",
+              "name": "News 관리",
+              "url": "https://yangji-madang.github.io/portal/news/news_admin.html",
+              "type": "admin"
+            }
+          ]
         }
       ]
     }
