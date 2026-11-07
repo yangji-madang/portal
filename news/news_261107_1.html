@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>세.알.나.알 Daily Briefing 2026.11.07(토) 1차</title>
+<title>윤대감 세상 훑어보기 2026.11.07(토) 1차</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#fff;color:#111;font-family:"맑은 고딕","Malgun Gothic",sans-serif;font-size:14px;line-height:1.6}
 .wrap{max-width:820px;margin:0 auto;padding:12px 16px}
-h1{font-size:18px;margin:6px 0 10px;padding-bottom:6px;border-bottom:2px solid #111}
+h1{font-size:18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:6px 0 10px;padding-bottom:6px;border-bottom:2px solid #111}
 h2{font-size:15px;margin:16px 0 4px}
 a{color:#0b3d91}
 .item{margin:0 0 10px;padding:2px 0}
 .h{font-weight:700}
 .s{margin:0}
-.cm{margin-top:2px;color:#7a1f00}
+h1 .dt{font-size:12.6px;font-weight:normal}
+.cm{-webkit-print-color-adjust:exact;print-color-adjust:exact;margin:4px 0 2px;padding:4px 8px;border:1px dashed #b8860b;background:#fff9c4;color:#111}
+.cm b{color:#7a1f00}
 .from{margin-top:18px;padding-top:8px;border-top:1px solid #111}
 .bar{position:sticky;top:0;z-index:50;background:#fffbe6;border:1px solid #c9a227;padding:5px 10px;margin:0 0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .bar button,.ctl button{font-family:inherit;font-size:11px;padding:2px 9px;border:1px solid #333;background:#fff;color:#111;border-radius:3px;cursor:pointer}
@@ -41,7 +43,7 @@ body.edit .edit-only{display:inline-block}
 <div class="wrap">
 <div class="bar" id="bar"><label><input type="checkbox" id="tg"> <b>편집 모드</b></label><button class="edit-only" id="bsave">깨끗한 HTML로 저장</button></div>
 
-<h1>세.알.나.알 Daily Briefing | 2026.11.07(토)</h1>
+<h1><span>윤대감 세상 훑어보기</span><span class="dt">2026.11.07(토)</span></h1>
 
 <h2>■ 경제</h2>
 <div class="items">
@@ -186,7 +188,7 @@ document.addEventListener("click",function(ev){
 document.getElementById("pc").onclick=function(){document.getElementById("pop").style.display="none"};
 document.getElementById("po").onclick=function(){
  var t=document.getElementById("pt").value.trim(),u=document.getElementById("pu").value.trim();
- if(t&&target){var d=document.createElement("p");d.className="s cm";d.appendChild(document.createTextNode("※ "+t+" "));
+ if(t&&target){var d=document.createElement("p");d.className="s cm";var b=document.createElement("b");b.textContent="<윤대감 註> ";d.appendChild(b);d.appendChild(document.createTextNode(t+" "));
   if(/^https?:\/\//i.test(u)){var a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";a.textContent=u;d.appendChild(a)}
   target.insertBefore(d,target.querySelector(".ctl"))}
  document.getElementById("pop").style.display="none"};
