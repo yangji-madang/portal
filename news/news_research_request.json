@@ -1,9 +1,9 @@
 {
-  "requestedAt": "2026-11-07T01:47:45.751Z",
+  "requestedAt": "2026-11-07T01:58:00Z",
   "slot": "09:00",
   "targetFile": "news/news_261107_2.html",
   "config": "news/news_config.json",
   "status": "done",
-  "processedAt": "2026-11-07T01:55:00Z",
-  "note": "11.06~11.07 재검색: IT 2건 추가. 금융·법률·정책·중대재해 기사는 해당 기간 확인분 없음"
+  "processedAt": "2026-11-07T01:58:00Z",
+  "note": "11.06~11.07 재검색: 경제·사회·정책·의료.건강 각 1건 추가(총 27건). 법률 및 보험저널·조세일보 기간 내 확인분 없음"
 }
