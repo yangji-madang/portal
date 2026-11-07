@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>윤대감 세상 훑어보기 · 페이지 관리</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#111;font-family:"맑은 고딕","Malgun Gothic",sans-serif;font-size:14px;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:14px}
+h1{font-size:20px;margin:4px 0 2px}
+.sub{color:#555;margin:0 0 10px;font-size:13px}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.tabs button{padding:6px 14px;border:1px solid #888;background:#fff;border-radius:4px 4px 0 0;cursor:pointer;font:inherit}
+.tabs button.on{background:#1f3a5f;color:#fff;border-color:#1f3a5f}
+.panel{display:none;background:#fff;border:1px solid #ccc;border-radius:4px;padding:12px}
+.panel.on{display:block}
+h2{font-size:16px;margin:0 0 8px;padding-bottom:4px;border-bottom:2px solid #1f3a5f}
+label{display:inline-block;font-size:13px;color:#333}
+input[type=text],input[type=number],input[type=password],select,textarea{font:inherit;padding:4px 6px;border:1px solid #999;border-radius:3px;background:#fff}
+input[type=color]{padding:0;width:36px;height:26px;border:1px solid #999}
+input[type=text].w{width:100%}
+textarea{width:100%;resize:vertical}
+button.b{font:inherit;padding:4px 10px;border:1px solid #444;background:#fff;border-radius:3px;cursor:pointer}
+button.b:hover{background:#eef}
+button.pri{background:#1f3a5f;color:#fff;border-color:#1f3a5f}
+button.pri:hover{background:#2c4f80}
+button.del{color:#a00;border-color:#a00}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ccc;padding:4px 6px;text-align:left;vertical-align:middle}
+th{background:#eef1f6;font-size:13px}
+td.c{text-align:center;white-space:nowrap}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0}
+.hint{color:#666;font-size:12px;margin:4px 0}
+.box{border:1px solid #ccc;border-radius:4px;padding:8px;margin:8px 0;background:#fafbfd}
+.status{margin:8px 0;padding:6px 10px;border-radius:3px;display:none}
+.status.ok{display:block;background:#e6f4ea;color:#14532d}
+.status.err{display:block;background:#fdecea;color:#8a1c12}
+.status.info{display:block;background:#eef3fb;color:#1f3a5f}
+.pv{background:#fff;border:1px solid #bbb;padding:12px;margin-top:8px}
+.pv .t{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:2px solid #111;padding-bottom:6px;margin-bottom:8px}
+.pv .cm{margin:4px 0 2px;padding:4px 8px}
+.savebar{position:sticky;bottom:0;background:#fff;border-top:2px solid #1f3a5f;padding:8px;margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cp{text-align:right;margin:14px 0 4px;font-size:12px;color:#333}
+@media print{.tabs,.savebar,button,.status{display:none!important}.panel{display:block!important;border:0;page-break-inside:avoid}body{background:#fff;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>윤대감 세상 훑어보기 · 페이지 관리</h1>
+<p class="sub">여기서 저장한 <b>news_config.json</b> 설정대로 기사 검색과 뉴스레터(news_yymmdd.html) 제작이 이루어집니다.</p>
+<div id="st" class="status"></div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="panel" id="p-title">
+  <h2>1. 제목</h2>
+  <div class="row"><label>페이지 제목 <input type="text" id="fTitle" style="width:340px"></label></div>
+  <div class="hint">첫 줄 왼쪽에 표시되며, 오른쪽 끝에는 오늘 날짜(요일 포함)가 자동으로 들어갑니다. 브라우저 탭 제목도 같은 값을 사용합니다.</div>
+  <div class="row"><label><input type="checkbox" id="fPol"> 정치 기사 제외</label>
+  <label><input type="checkbox" id="fPaid"> 유료·로그인 필요 기사 제외</label></div>
+  <div class="row"><label>1차 수집 <input type="text" id="fT1" style="width:70px"></label><label>2차 수집 <input type="text" id="fT2" style="width:70px"></label>
+  <span class="hint">24시간 표기(예: 07:00). 파일명은 news_yymmdd_1.html, news_yymmdd_2.html 입니다.</span></div>
+</div>
+
+<div class="panel" id="p-sec">
+  <h2>2. 섹션 설정</h2>
+  <div class="hint">위에서 아래 순서가 뉴스레터 배치 순서입니다. 사용 해제하거나 기사가 없는 섹션은 페이지에 표시되지 않습니다. 섹션 설명은 기사 선별 기준으로 사용됩니다.</div>
+  <table><thead><tr><th style="width:60px">사용</th><th style="width:150px">섹션명</th><th>섹션 설명(선별 기준)</th><th style="width:150px">순서·삭제</th></tr></thead><tbody id="secBody"></tbody></table>
+  <div class="row"><button class="b" id="secAdd">+ 섹션 추가</button></div>
+</div>
+
+<div class="panel" id="p-out">
+  <h2>3. 필수 검색 언론사</h2>
+  <div class="hint">‘필수’로 체크한 언론사는 매 회차 반드시 검색합니다. ‘사용’을 해제하면 검색에서 제외됩니다. 메모에는 우선 검색할 섹션 등을 적어 둘 수 있습니다.</div>
+  <table><thead><tr><th style="width:52px">사용</th><th style="width:52px">필수</th><th style="width:150px">언론사명</th><th>URL</th><th style="width:200px">메모</th><th style="width:60px">삭제</th></tr></thead><tbody id="outBody"></tbody></table>
+  <div class="row"><button class="b" id="outAdd">+ 언론사 추가</button></div>
+</div>
+
+<div class="panel" id="p-font">
+  <h2>4. 글꼴 설정</h2>
+  <table><thead><tr><th style="width:120px">대상</th><th style="width:170px">글꼴</th><th style="width:110px">크기</th><th style="width:100px">굵기</th><th style="width:80px">색상</th></tr></thead><tbody id="fontBody"></tbody></table>
+  <div class="hint">날짜 크기는 페이지 제목 크기에 대한 비율(%)입니다(기본 70%). 글꼴 목록에 없는 글꼴은 직접 입력할 수 있습니다.</div>
+</div>
+
+<div class="panel" id="p-foot">
+  <h2>5. Footer 관리</h2>
+  <div class="row"><label><input type="checkbox" id="foShow"> 하단 문구 표시</label></div>
+  <div class="row"><label>문구 <input type="text" id="foText" style="width:340px"></label>
+  <label>정렬 <select id="foAlign"><option value="left">왼쪽</option><option value="center">가운데</option><option value="right">오른쪽</option></select></label>
+  <label>크기 <input type="number" id="foSize" min="8" max="30" style="width:60px"> px</label>
+  <label>색상 <input type="color" id="foColor"></label></div>
+  <div class="hint">뉴스레터 끝줄에 한 줄로 들어갑니다(copyright 문구 없음).</div>
+</div>
+
+<div class="panel" id="p-cm">
+  <h2>6. 코멘트 설정</h2>
+  <div class="row"><label>머릿글 <input type="text" id="cmLabel" style="width:160px"></label>
+  <label><input type="checkbox" id="cmBold"> 머릿글 굵게</label>
+  <label>머릿글 색 <input type="color" id="cmLC"></label>
+  <label>본문 색 <input type="color" id="cmTC"></label></div>
+  <div class="row"><label>배경색 <input type="color" id="cmBg"></label>
+  <label>테두리 <select id="cmBS"><option value="none">없음</option><option value="dashed">점선</option><option value="solid">실선</option></select></label>
+  <label>테두리 색 <input type="color" id="cmBC"></label></div>
+  <div class="hint">뉴스레터의 편집 모드에서 ‘코멘트’ 버튼으로 추가하는 멘트의 표시 형식입니다.</div>
+</div>
+
+<div class="box"><b>미리보기</b>
+  <div class="pv" id="pv"></div>
+</div>
+
+<div class="savebar">
+  <button class="b pri" id="bSave">GitHub에 저장</button>
+  <button class="b" id="bDl">news_config.json 내려받기</button>
+  <button class="b" id="bReload">저장본 다시 불러오기</button>
+  <button class="b" id="bDef">기본값 복원</button>
+  <button class="b" id="bCfg">저장 설정</button>
+  <button class="b" onclick="window.print()">인쇄</button>
+</div>
+
+<div class="box" id="cfgBox" style="display:none">
+  <div class="row">
+    <label>owner <input type="text" id="gOwner" style="width:130px"></label>
+    <label>repo <input type="text" id="gRepo" style="width:100px"></label>
+    <label>path <input type="text" id="gPath" style="width:170px"></label>
+    <label>branch <input type="text" id="gBranch" style="width:70px"></label>
+    <label>token <input type="password" id="gToken" style="width:220px" autocomplete="off"></label>
+    <button class="b" id="gOk">확인</button>
+  </div>
+  <div class="hint">설정과 토큰은 이 브라우저(localStorage)에만 저장됩니다. 토큰(contents 쓰기 권한)이 없으면 ‘내려받기’로 받은 파일을 news 폴더에 직접 올려 주세요.</div>
+</div>
+
+<div class="cp" id="cp"></div>
+</div>
+
+<script>
+(function(){
+var DEF={"version":1,"title":"윤대감 세상 훑어보기","sections":[
+{"id":"economy","name":"경제","enabled":true,"desc":"경제동향, 향후 전망(특히 특정 기간에 나오는 다음 기간 동향 예측 필수)"},
+{"id":"society","name":"사회","enabled":true,"desc":"부동산 동향·정책(특정 지역 시세·분양은 제외), 주요 사건사고, 이슈 기사"},
+{"id":"policy","name":"정책","enabled":true,"desc":"노무·상속·증여·법인·소득 관련 세제 동향"},
+{"id":"it","name":"IT","enabled":true,"desc":"업계동향, 트렌드, 신기술, 향후 예측"},
+{"id":"company","name":"기업","enabled":true,"desc":"포털·언론사 헤드라인에 등장하는 기업 관련 주요 기사"},
+{"id":"health","name":"의료.건강","enabled":true,"desc":"의료 신기술, 건강 트렌드"},
+{"id":"finance","name":"금융","enabled":true,"desc":"보험업계, 보험상품 트렌드"},
+{"id":"law","name":"법률","enabled":true,"desc":"세제, 보험분쟁 등과 관련된 주요 판례"}],
+"outlets":[],
+"fonts":{"pageTitle":{"family":"맑은 고딕","size":18,"weight":"bold","color":"#111111"},"date":{"family":"맑은 고딕","ratio":70,"weight":"normal","color":"#111111"},"sectionName":{"family":"맑은 고딕","size":15,"weight":"bold","color":"#111111"},"articleTitle":{"family":"맑은 고딕","size":14,"weight":"bold","color":"#111111"},"body":{"family":"맑은 고딕","size":14,"weight":"normal","color":"#111111"}},
+"footer":{"show":true,"text":"from Yoon, Hyunchul","align":"right","size":14,"color":"#111111"},
+"comment":{"label":"<윤대감 註>","labelBold":false,"labelColor":"#7a1f00","textColor":"#111111","bg":"#fffde7","borderStyle":"none","borderColor":"#b8860b"},
+"collect":{"times":["07:00","09:00"],"excludePolitics":true,"excludePaid":true}};
+var FAMS=["맑은 고딕","나눔고딕","돋움","굴림","바탕","Noto Sans KR","Arial","Georgia"];
+var FNAMES=[["pageTitle","페이지 제목"],["date","날짜"],["sectionName","섹션명"],["articleTitle","기사 제목"],["body","기사 본문"]];
+var TABS=[["p-title","제목"],["p-sec","섹션 설정"],["p-out","필수 검색 언론사"],["p-font","글꼴"],["p-foot","Footer"],["p-cm","코멘트"]];
+var cfg=null,loadedSha=null;
+function $(i){return document.getElementById(i)}
+function el(t,a,k){var e=document.createElement(t);for(var x in(a||{}))e[x]=a[x];(k||[]).forEach(function(c){e.appendChild(typeof c==="string"?document.createTextNode(c):c)});return e}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function status(m,c){var s=$("st");s.textContent=m;s.className="status "+(c||"info")}
+function pad(n){return n<10?"0"+n:""+n}
+var DAYS=["일","월","화","수","목","금","토"];
+function today(){var d=new Date();return d.getFullYear()+"."+pad(d.getMonth()+1)+"."+pad(d.getDate())+"("+DAYS[d.getDay()]+")"}
+
+/* tabs */
+var tb=$("tabs");
+TABS.forEach(function(t,i){var b=el("button",{textContent:t[1]});b.onclick=function(){show(t[0])};b.dataset.p=t[0];tb.appendChild(b)});
+function show(id){TABS.forEach(function(t){$(t[0]).classList.toggle("on",t[0]===id)});[].forEach.call(tb.children,function(b){b.classList.toggle("on",b.dataset.p===id)})}
+
+/* inputs <-> cfg */
+function bindSimple(){
+ $("fTitle").value=cfg.title;$("fPol").checked=!!cfg.collect.excludePolitics;$("fPaid").checked=!!cfg.collect.excludePaid;
+ $("fT1").value=cfg.collect.times[0]||"";$("fT2").value=cfg.collect.times[1]||"";
+ var f=cfg.footer;$("foShow").checked=f.show;$("foText").value=f.text;$("foAlign").value=f.align;$("foSize").value=f.size;$("foColor").value=f.color;
+ var c=cfg.comment;$("cmLabel").value=c.label;$("cmBold").checked=c.labelBold;$("cmLC").value=c.labelColor;$("cmTC").value=c.textColor;$("cmBg").value=c.bg;$("cmBS").value=c.borderStyle;$("cmBC").value=c.borderColor;
+}
+function readSimple(){
+ cfg.title=$("fTitle").value.trim();cfg.collect.excludePolitics=$("fPol").checked;cfg.collect.excludePaid=$("fPaid").checked;
+ cfg.collect.times=[$("fT1").value.trim(),$("fT2").value.trim()];
+ cfg.footer={show:$("foShow").checked,text:$("foText").value,align:$("foAlign").value,size:parseInt($("foSize").value,10)||14,color:$("foColor").value};
+ cfg.comment={label:$("cmLabel").value,labelBold:$("cmBold").checked,labelColor:$("cmLC").value,textColor:$("cmTC").value,bg:$("cmBg").value,borderStyle:$("cmBS").value,borderColor:$("cmBC").value};
+}
+["fTitle","fPol","fPaid","fT1","fT2","foShow","foText","foAlign","foSize","foColor","cmLabel","cmBold","cmLC","cmTC","cmBg","cmBS","cmBC"].forEach(function(i){var e=$(i);e.addEventListener("input",function(){readSimple();preview()});e.addEventListener("change",function(){readSimple();preview()})});
+
+/* sections */
+function renderSec(){
+ var b=$("secBody");b.innerHTML="";
+ cfg.sections.forEach(function(s,i){
+  var en=el("input",{type:"checkbox",checked:s.enabled});en.onchange=function(){s.enabled=en.checked};
+  var nm=el("input",{type:"text",value:s.name,className:"w"});nm.oninput=function(){s.name=nm.value;preview()};
+  var ds=el("textarea",{rows:2,value:s.desc});ds.oninput=function(){s.desc=ds.value};
+  var up=el("button",{className:"b",textContent:"▲"});up.onclick=function(){if(i>0){cfg.sections.splice(i-1,0,cfg.sections.splice(i,1)[0]);renderSec();preview()}};
+  var dn=el("button",{className:"b",textContent:"▼"});dn.onclick=function(){if(i<cfg.sections.length-1){cfg.sections.splice(i+1,0,cfg.sections.splice(i,1)[0]);renderSec();preview()}};
+  var dl=el("button",{className:"b del",textContent:"삭제"});dl.onclick=function(){if(confirm("‘"+s.name+"’ 섹션을 삭제할까요?")){cfg.sections.splice(i,1);renderSec();preview()}};
+  b.appendChild(el("tr",{},[el("td",{className:"c"},[en]),el("td",{},[nm]),el("td",{},[ds]),el("td",{className:"c"},[up," ",dn," ",dl])]));
+ });
+}
+$("secAdd").onclick=function(){cfg.sections.push({id:"s"+Date.now(),name:"새 섹션",enabled:true,desc:""});renderSec();preview()};
+
+/* outlets */
+function renderOut(){
+ var b=$("outBody");b.innerHTML="";
+ cfg.outlets.forEach(function(o,i){
+  var en=el("input",{type:"checkbox",checked:o.enabled});en.onchange=function(){o.enabled=en.checked};
+  var rq=el("input",{type:"checkbox",checked:o.required});rq.onchange=function(){o.required=rq.checked};
+  var nm=el("input",{type:"text",value:o.name,className:"w"});nm.oninput=function(){o.name=nm.value};
+  var ur=el("input",{type:"text",value:o.url,className:"w"});ur.oninput=function(){o.url=ur.value};
+  var nt=el("input",{type:"text",value:o.note||"",className:"w"});nt.oninput=function(){o.note=nt.value};
+  var dl=el("button",{className:"b del",textContent:"삭제"});dl.onclick=function(){cfg.outlets.splice(i,1);renderOut()};
+  b.appendChild(el("tr",{},[el("td",{className:"c"},[en]),el("td",{className:"c"},[rq]),el("td",{},[nm]),el("td",{},[ur]),el("td",{},[nt]),el("td",{className:"c"},[dl])]));
+ });
+}
+$("outAdd").onclick=function(){cfg.outlets.push({name:"",url:"https://",required:false,enabled:true,note:""});renderOut()};
+
+/* fonts */
+function renderFont(){
+ var b=$("fontBody");b.innerHTML="";
+ FNAMES.forEach(function(f){
+  var k=f[0],o=cfg.fonts[k];
+  var dl=el("datalist",{id:"dl_"+k});FAMS.forEach(function(x){dl.appendChild(el("option",{value:x}))});
+  var fam=el("input",{type:"text",value:o.family,className:"w"});fam.setAttribute("list","dl_"+k);fam.oninput=function(){o.family=fam.value;preview()};
+  var sz;
+  if(k==="date"){sz=el("span",{},[el("input",{type:"number",value:o.ratio,min:30,max:120,style:"width:60px"}),el("span",{textContent:" % (제목 대비)"})]);sz.firstChild.oninput=function(e){o.ratio=parseInt(e.target.value,10)||70;preview()}}
+  else{sz=el("span",{},[el("input",{type:"number",value:o.size,min:8,max:40,style:"width:60px"}),el("span",{textContent:" px"})]);sz.firstChild.oninput=function(e){o.size=parseInt(e.target.value,10)||14;preview()}}
+  var wt=el("select",{},[el("option",{value:"normal",textContent:"보통"}),el("option",{value:"bold",textContent:"굵게"})]);wt.value=o.weight;wt.onchange=function(){o.weight=wt.value;preview()};
+  var cl=el("input",{type:"color",value:o.color});cl.oninput=function(){o.color=cl.value;preview()};
+  b.appendChild(el("tr",{},[el("td",{textContent:f[1]}),el("td",{},[fam,dl]),el("td",{},[sz]),el("td",{},[wt]),el("td",{className:"c"},[cl])]));
+ });
+}
+
+/* preview */
+function fs(o){return "font-family:'"+o.family+"',sans-serif;font-weight:"+o.weight+";color:"+o.color}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function preview(){
+ var F=cfg.fonts,c=cfg.comment,f=cfg.footer;
+ var ds=Math.round(F.pageTitle.size*F.date.ratio)/100;
+ var sec=cfg.sections.filter(function(s){return s.enabled})[0];
+ var h='<div class="t"><span style="'+fs(F.pageTitle)+';font-size:'+F.pageTitle.size+'px">'+esc(cfg.title)+'</span><span style="'+fs(F.date)+';font-size:'+ds+'px">'+today()+'</span></div>';
+ h+='<div style="'+fs(F.sectionName)+';font-size:'+F.sectionName.size+'px;margin:6px 0 4px">■ '+esc(sec?sec.name:"섹션")+'</div>';
+ h+='<div style="'+fs(F.articleTitle)+';font-size:'+F.articleTitle.size+'px"><u>기사 제목 예시</u> (출처, 11.07)</div>';
+ h+='<div style="'+fs(F.body)+';font-size:'+F.body.size+'px">- 요약 문장 첫째 줄 예시<br>- 요약 문장 둘째 줄 예시<br>- 요약 문장 셋째 줄 예시</div>';
+ var bd=c.borderStyle==="none"?"border:0":"border:1px "+c.borderStyle+" "+c.borderColor;
+ h+='<div class="cm" style="'+bd+';background:'+c.bg+';color:'+c.textColor+';font-size:'+F.body.size+'px;font-family:\''+F.body.family+'\',sans-serif"><span style="color:'+c.labelColor+';font-weight:'+(c.labelBold?"bold":"normal")+'">'+esc(c.label)+'</span> 코멘트 예시 문장</div>';
+ if(f.show)h+='<div style="text-align:'+f.align+';font-size:'+f.size+'px;color:'+f.color+';font-family:\''+F.body.family+'\',sans-serif;margin-top:10px">'+esc(f.text)+'</div>';
+ $("pv").innerHTML=h;
+}
+
+/* load / save */
+function normalize(c){
+ var d=clone(DEF);
+ if(!c||typeof c!=="object")return d;
+ ["title"].forEach(function(k){if(typeof c[k]==="string")d[k]=c[k]});
+ if(Array.isArray(c.sections))d.sections=c.sections.map(function(s,i){return{id:s.id||("s"+i),name:s.name||"",enabled:s.enabled!==false,desc:s.desc||""}});
+ if(Array.isArray(c.outlets))d.outlets=c.outlets.map(function(o){return{name:o.name||"",url:o.url||"",required:!!o.required,enabled:o.enabled!==false,note:o.note||""}});
+ if(c.fonts)Object.keys(d.fonts).forEach(function(k){if(c.fonts[k])d.fonts[k]=Object.assign(d.fonts[k],c.fonts[k])});
+ if(c.footer)d.footer=Object.assign(d.footer,c.footer);
+ if(c.comment)d.comment=Object.assign(d.comment,c.comment);
+ if(c.collect)d.collect=Object.assign(d.collect,c.collect);
+ return d;
+}
+function apply(c){cfg=normalize(c);bindSimple();renderSec();renderOut();renderFont();preview()}
+var G=(function(){var d={owner:"yangji-madang",repo:"portal",path:"news/news_config.json",branch:"main",token:""},s={};try{s=JSON.parse(localStorage.getItem("newsCfg")||"{}")||{}}catch(e){}return Object.assign(d,s)})();
+function gApi(){return"https://api.github.com/repos/"+G.owner+"/"+G.repo+"/contents/"+G.path}
+function load(){
+ status("저장본을 불러오는 중…","info");
+ fetch("news_config.json?t="+Date.now()).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){apply(j);status("저장본(news_config.json)을 불러왔습니다.","ok")}).catch(function(){apply(DEF);status("저장본을 찾지 못해 기본값으로 시작합니다.","err")});
+}
+function cleaned(){readSimple();var c=clone(cfg);c.version=1;c.sections=c.sections.filter(function(s){return s.name.trim()});c.outlets=c.outlets.filter(function(o){return o.name.trim()});return c}
+function dl(){var a=el("a",{href:URL.createObjectURL(new Blob([JSON.stringify(cleaned(),null,2)+"\n"],{type:"application/json"})),download:"news_config.json"});document.body.appendChild(a);a.click();a.remove();status("news_config.json을 내려받았습니다. 저장소 news 폴더에 올려 주세요.","ok")}
+function b64(s){return btoa(unescape(encodeURIComponent(s)))}
+async function save(){
+ if(!G.token){status("토큰이 없습니다. ‘저장 설정’에 입력하거나 ‘내려받기’를 이용해 주세요.","err");return}
+ var H={"Authorization":"Bearer "+G.token,"Accept":"application/vnd.github+json"};
+ try{
+  status("저장 중…","info");
+  var sha;var g=await fetch(gApi()+"?ref="+encodeURIComponent(G.branch),{headers:H});
+  if(g.ok){sha=(await g.json()).sha}else if(g.status!==404){throw new Error("조회 실패 "+g.status)}
+  var body={message:"news_config.json 업데이트 (관리페이지)",content:b64(JSON.stringify(cleaned(),null,2)+"\n"),branch:G.branch};
+  if(sha)body.sha=sha;
+  var p=await fetch(gApi(),{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify(body)});
+  if(!p.ok)throw new Error("저장 실패 "+p.status);
+  status("GitHub에 저장했습니다. 다음 회차부터 이 설정이 적용됩니다.","ok");
+ }catch(e){status(e.message+" — 토큰 권한과 설정을 확인하거나 ‘내려받기’를 이용해 주세요.","err")}
+}
+$("bSave").onclick=save;$("bDl").onclick=dl;$("bReload").onclick=load;
+$("bDef").onclick=function(){if(confirm("기본값으로 복원할까요? (언론사 목록은 저장본에서 다시 불러오세요)"))apply(DEF)};
+$("bCfg").onclick=function(){var b=$("cfgBox");b.style.display=b.style.display==="none"?"block":"none";$("gOwner").value=G.owner;$("gRepo").value=G.repo;$("gPath").value=G.path;$("gBranch").value=G.branch;$("gToken").value=G.token};
+$("gOk").onclick=function(){G={owner:$("gOwner").value.trim(),repo:$("gRepo").value.trim(),path:$("gPath").value.trim(),branch:$("gBranch").value.trim(),token:$("gToken").value.trim()};localStorage.setItem("newsCfg",JSON.stringify(G));$("cfgBox").style.display="none";status("저장 설정을 보관했습니다.","ok")};
+$("cp").textContent="(C)"+new Date().getFullYear()+". YOON HYUNCHUL,  ALL RIGHT RESERVED.";
+show("p-title");load();
+})();
+</script>
+</body>
+</html>
