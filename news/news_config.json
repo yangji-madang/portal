@@ -2,47 +2,250 @@
   "version": 1,
   "title": "윤대감 세상 훑어보기",
   "sections": [
-    {"id": "economy", "name": "경제", "enabled": true, "desc": "경제동향, 향후 전망(특히 특정 기간에 나오는 다음 기간 동향 예측 필수)"},
-    {"id": "society", "name": "사회", "enabled": true, "desc": "부동산 동향·정책(특정 지역 시세·분양은 제외), 주요 사건사고, 이슈 기사"},
-    {"id": "policy", "name": "정책", "enabled": true, "desc": "노무·상속·증여·법인·소득 관련 세제 동향"},
-    {"id": "it", "name": "IT", "enabled": true, "desc": "업계동향, 트렌드, 신기술, 향후 예측"},
-    {"id": "company", "name": "기업", "enabled": true, "desc": "포털·언론사 헤드라인에 등장하는 기업 관련 주요 기사"},
-    {"id": "health", "name": "의료.건강", "enabled": true, "desc": "의료 신기술, 건강 트렌드"},
-    {"id": "finance", "name": "금융", "enabled": true, "desc": "보험업계, 보험상품 트렌드"},
-    {"id": "law", "name": "법률", "enabled": true, "desc": "세제, 보험분쟁 등과 관련된 주요 판례"}
+    {
+      "id": "economy",
+      "name": "경제",
+      "enabled": true,
+      "desc": "경제동향, 향후 전망(특히 특정 기간에 나오는 다음 기간 동향 예측 필수)"
+    },
+    {
+      "id": "society",
+      "name": "사회",
+      "enabled": true,
+      "desc": "부동산 동향·정책(특정 지역 시세·분양은 제외), 주요 사건사고, 이슈 기사"
+    },
+    {
+      "id": "policy",
+      "name": "정책",
+      "enabled": true,
+      "desc": "노무·상속·증여·법인·소득 관련 세제 동향"
+    },
+    {
+      "id": "it",
+      "name": "IT",
+      "enabled": true,
+      "desc": "업계동향, 트렌드, 신기술, 향후 예측"
+    },
+    {
+      "id": "company",
+      "name": "기업",
+      "enabled": true,
+      "desc": "포털·언론사 헤드라인에 등장하는 기업 관련 주요 기사"
+    },
+    {
+      "id": "health",
+      "name": "의료.건강",
+      "enabled": true,
+      "desc": "의료 신기술, 건강 트렌드"
+    },
+    {
+      "id": "finance",
+      "name": "금융",
+      "enabled": true,
+      "desc": "보험업계, 보험상품 트렌드"
+    },
+    {
+      "id": "law",
+      "name": "법률",
+      "enabled": true,
+      "desc": "세제, 보험분쟁 등과 관련된 주요 판례"
+    }
   ],
   "outlets": [
-    {"name": "한국경제", "url": "https://www.hankyung.com", "required": true, "enabled": true, "note": ""},
-    {"name": "서울경제", "url": "https://www.sedaily.com", "required": true, "enabled": true, "note": ""},
-    {"name": "파이낸셜뉴스", "url": "https://www.fnnews.com", "required": true, "enabled": true, "note": ""},
-    {"name": "이데일리", "url": "https://www.edaily.co.kr", "required": true, "enabled": true, "note": ""},
-    {"name": "아시아경제", "url": "https://www.asiae.co.kr", "required": true, "enabled": true, "note": ""},
-    {"name": "머니투데이", "url": "https://www.mt.co.kr", "required": true, "enabled": true, "note": ""},
-    {"name": "전자신문", "url": "https://www.etnews.com", "required": true, "enabled": true, "note": "IT 섹션 우선"},
-    {"name": "ZDNet Korea", "url": "https://zdnet.co.kr", "required": false, "enabled": true, "note": "IT 섹션 우선"},
-    {"name": "뉴스1", "url": "https://www.news1.kr", "required": true, "enabled": true, "note": ""},
-    {"name": "뉴시스", "url": "https://www.newsis.com", "required": false, "enabled": true, "note": ""},
-    {"name": "한국세정신문", "url": "https://www.taxtimes.co.kr", "required": true, "enabled": true, "note": "정책(세제) 섹션 우선"},
-    {"name": "조세금융신문", "url": "https://www.tfmedia.co.kr", "required": false, "enabled": true, "note": "정책(세제)·금융 섹션 우선"},
-    {"name": "메디게이트뉴스", "url": "https://www.medigatenews.com", "required": false, "enabled": true, "note": "의료.건강 섹션 우선"},
-    {"name": "메트로신문", "url": "https://www.metroseoul.co.kr", "required": false, "enabled": true, "note": ""},
-    {"name": "비즈워치", "url": "https://news.bizwatch.co.kr", "required": false, "enabled": true, "note": "금융 섹션 우선"},
-    {"name": "SBS Biz", "url": "https://biz.sbs.co.kr", "required": false, "enabled": true, "note": ""},
-    {"name": "연합뉴스", "url": "https://www.yna.co.kr", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"},
-    {"name": "매일경제", "url": "https://www.mk.co.kr", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"},
-    {"name": "조선일보", "url": "https://www.chosun.com", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"},
-    {"name": "중앙일보", "url": "https://www.joongang.co.kr", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"},
-    {"name": "동아일보", "url": "https://www.donga.com", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"},
-    {"name": "한겨레", "url": "https://www.hani.co.kr", "required": false, "enabled": false, "note": "현 작업 환경에서 검색 불가"}
+    {
+      "name": "한국경제",
+      "url": "https://www.hankyung.com",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "서울경제",
+      "url": "https://www.sedaily.com",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "파이낸셜뉴스",
+      "url": "https://www.fnnews.com",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "이데일리",
+      "url": "https://www.edaily.co.kr",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "아시아경제",
+      "url": "https://www.asiae.co.kr",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "머니투데이",
+      "url": "https://www.mt.co.kr",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "전자신문",
+      "url": "https://www.etnews.com",
+      "required": true,
+      "enabled": true,
+      "note": "IT 섹션 우선"
+    },
+    {
+      "name": "ZDNet Korea",
+      "url": "https://zdnet.co.kr",
+      "required": false,
+      "enabled": true,
+      "note": "IT 섹션 우선"
+    },
+    {
+      "name": "뉴스1",
+      "url": "https://www.news1.kr",
+      "required": true,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "뉴시스",
+      "url": "https://www.newsis.com",
+      "required": false,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "한국세정신문",
+      "url": "https://www.taxtimes.co.kr",
+      "required": true,
+      "enabled": true,
+      "note": "정책(세제) 섹션 우선"
+    },
+    {
+      "name": "조세금융신문",
+      "url": "https://www.tfmedia.co.kr",
+      "required": false,
+      "enabled": true,
+      "note": "정책(세제)·금융 섹션 우선"
+    },
+    {
+      "name": "메디게이트뉴스",
+      "url": "https://www.medigatenews.com",
+      "required": false,
+      "enabled": true,
+      "note": "의료.건강 섹션 우선"
+    },
+    {
+      "name": "메트로신문",
+      "url": "https://www.metroseoul.co.kr",
+      "required": false,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "비즈워치",
+      "url": "https://news.bizwatch.co.kr",
+      "required": false,
+      "enabled": true,
+      "note": "금융 섹션 우선"
+    },
+    {
+      "name": "SBS Biz",
+      "url": "https://biz.sbs.co.kr",
+      "required": false,
+      "enabled": true,
+      "note": ""
+    },
+    {
+      "name": "연합뉴스",
+      "url": "https://www.yna.co.kr",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "매일경제",
+      "url": "https://www.mk.co.kr",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "조선일보",
+      "url": "https://www.chosun.com",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "중앙일보",
+      "url": "https://www.joongang.co.kr",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "동아일보",
+      "url": "https://www.donga.com",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    },
+    {
+      "name": "한겨레",
+      "url": "https://www.hani.co.kr",
+      "required": false,
+      "enabled": false,
+      "note": "현 작업 환경에서 검색 불가"
+    }
   ],
   "fonts": {
-    "pageTitle": {"family": "맑은 고딕", "size": 18, "weight": "bold", "color": "#111111"},
-    "date": {"family": "맑은 고딕", "ratio": 70, "weight": "normal", "color": "#111111"},
-    "sectionName": {"family": "맑은 고딕", "size": 15, "weight": "bold", "color": "#111111"},
-    "articleTitle": {"family": "맑은 고딕", "size": 14, "weight": "bold", "color": "#111111"},
-    "body": {"family": "맑은 고딕", "size": 14, "weight": "normal", "color": "#111111"}
+    "pageTitle": {
+      "family": "맑은 고딕",
+      "size": 18,
+      "weight": "bold",
+      "color": "#111111"
+    },
+    "date": {
+      "family": "맑은 고딕",
+      "ratio": 80,
+      "weight": "normal",
+      "color": "#111111"
+    },
+    "sectionName": {
+      "family": "맑은 고딕",
+      "size": 14,
+      "weight": "bold",
+      "color": "#111111"
+    },
+    "articleTitle": {
+      "family": "맑은 고딕",
+      "size": 13,
+      "weight": "bold",
+      "color": "#111111"
+    },
+    "body": {
+      "family": "맑은 고딕",
+      "size": 12,
+      "weight": "normal",
+      "color": "#111111"
+    }
   },
-  "footer": {"show": true, "text": "from Yoon, Hyunchul", "align": "right", "size": 14, "color": "#111111"},
+  "footer": {
+    "show": true,
+    "text": "Published by Yoon, Hyunchul",
+    "align": "right",
+    "size": 12,
+    "color": "#616161"
+  },
   "comment": {
     "label": "<윤대감 註>",
     "labelBold": false,
@@ -52,5 +255,12 @@
     "borderStyle": "none",
     "borderColor": "#b8860b"
   },
-  "collect": {"times": ["07:00", "09:00"], "excludePolitics": true, "excludePaid": true}
+  "collect": {
+    "times": [
+      "07:00",
+      "09:00"
+    ],
+    "excludePolitics": true,
+    "excludePaid": true
+  }
 }
