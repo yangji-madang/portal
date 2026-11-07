@@ -3,5 +3,7 @@
   "slot": "09:00",
   "targetFile": "news/news_261107_2.html",
   "config": "news/news_config.json",
-  "status": "pending"
+  "status": "done",
+  "processedAt": "2026-11-07T01:55:00Z",
+  "note": "11.06~11.07 재검색: IT 2건 추가. 금융·법률·정책·중대재해 기사는 해당 기간 확인분 없음"
 }
