@@ -119,6 +119,22 @@
               "type": "view"
             }
           ]
+        },
+        {
+          "links": [
+            {
+              "id": "xqfiw9q3",
+              "name": "2027 임원추천",
+              "url": "https://yangji-madang.github.io/nsgc/zion/zion_2027/vote_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xszgpg1c",
+              "name": "2027 임원추천",
+              "url": "https://yangji-madang.github.io/nsgc/zion/zion_2027/vote.html",
+              "type": "view"
+            }
+          ]
         }
       ]
     },
