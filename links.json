@@ -133,6 +133,12 @@
               "name": "2027 임원추천",
               "url": "https://yangji-madang.github.io/nsgc/zion_2027/vote.html",
               "type": "view"
+            },
+            {
+              "id": "xgoerygr",
+              "name": "2027 임원추천 현황",
+              "url": "https://yangji-madang.github.io/nsgc/zion_2027/vote_status.html",
+              "type": "view"
             }
           ]
         }
