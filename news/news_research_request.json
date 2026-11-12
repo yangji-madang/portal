@@ -1,8 +1,7 @@
 {
-  "requestedAt": "2026-11-10T13:24:50.362Z",
+  "requestedAt": "2026-11-12T10:55:31.924Z",
   "slot": "09:00",
-  "targetFile": "news/news_261110_2.html",
+  "targetFile": "news/news_261112_2.html",
   "config": "news/news_config.json",
-  "status": "done",
-  "note": "2026-11-10 재검색: 9건 추가(경제1, 정책3, IT1, 의료1, 금융2, 법률 신설1), 총 35건. 청년의사·메디게이트·조세일보 등은 11.9~10 확인 기사 없음."
+  "status": "pending"
 }
