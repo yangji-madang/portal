@@ -1,9 +1,7 @@
 {
-  "requestedAt": "2026-11-12T10:55:31.924Z",
+  "requestedAt": "2026-11-12T11:03:59.180Z",
   "slot": "09:00",
-  "targetFile": "news/news_261112.html",
+  "targetFile": "news/news_261112_2.html",
   "config": "news/news_config.json",
-  "status": "done",
-  "processedAt": "2026-11-12T08:00:00Z",
-  "note": "2026-11-12 재검색: 총 46건(1차 22건 유지 + 신규 24건). 파일명을 일자별 단일 파일(news_yymmdd.html)로 통합."
+  "status": "pending"
 }
