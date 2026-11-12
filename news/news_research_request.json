@@ -1,7 +1,9 @@
 {
   "requestedAt": "2026-11-12T11:03:59.180Z",
   "slot": "09:00",
-  "targetFile": "news/news_261112_2.html",
+  "targetFile": "news/news_261112.html",
   "config": "news/news_config.json",
-  "status": "pending"
+  "status": "done",
+  "processedAt": "2026-11-12T11:30:00Z",
+  "note": "2026-11-12 20:00 재검색: 7건 추가(경제1, 사회2, IT1, 기업1, 금융2), 총 53건. 메디게이트뉴스·청년의사·보험신보·조세일보·한국세정신문·전자신문·뉴시스는 11.11~12 확인 기사 없음. 파일은 news_261112.html 단일 파일로 유지."
 }
