@@ -116,7 +116,7 @@ td.c{text-align:center;white-space:nowrap}
     <button class="b pri" id="bRs">재검색 요청</button>
     <button class="b" id="bRsCp">요청문 복사</button>
   </div>
-  <div class="hint">대상 파일은 정기 검색시간(07:00·09:00) 기준 가장 최근 회차로 자동 정해집니다(07시 이전은 전날 2차). 요청은 news/news_research_request.json으로 저장되며, 이 페이지가 직접 검색하지는 않습니다. Claude에게 ‘재검색 요청 처리해줘’라고 말하거나 복사한 요청문을 전달하면 현재 저장된 설정으로 기사를 다시 모아 대상 파일을 갱신합니다.</div>
+  <div class="hint">대상 파일은 정기 검색시간(07:00·09:00) 기준 가장 최근 회차로 자동 정해집니다(07시 이전은 전날 파일, 하루 한 파일을 1차·2차가 이어서 갱신). 요청은 news/news_research_request.json으로 저장되며, 이 페이지가 직접 검색하지는 않습니다. Claude에게 ‘재검색 요청 처리해줘’라고 말하거나 복사한 요청문을 전달하면 현재 저장된 설정으로 기사를 다시 모아 대상 파일을 갱신합니다.</div>
 </div>
 
 <div class="savebar">
@@ -296,8 +296,8 @@ $("bDef").onclick=function(){if(confirm("기본값으로 복원할까요? (언�
 $("bCfg").onclick=function(){var b=$("cfgBox");b.style.display=b.style.display==="none"?"block":"none";$("gOwner").value=G.owner;$("gRepo").value=G.repo;$("gPath").value=G.path;$("gBranch").value=G.branch;$("gToken").value=G.token};
 $("gOk").onclick=function(){G={owner:$("gOwner").value.trim(),repo:$("gRepo").value.trim(),path:$("gPath").value.trim(),branch:$("gBranch").value.trim(),token:$("gToken").value.trim()};localStorage.setItem("newsCfg",JSON.stringify(G));$("cfgBox").style.display="none";status("저장 설정을 보관했습니다.","ok")};
 
-function rsTarget(){var d=new Date(),h=d.getHours(),n=1,sl="09:00";if(h<7){d=new Date(d.getTime()-864e5);n=2}else if(h<9){n=1;sl="07:00"}else n=2;
- if(h<7)sl="09:00";var f="news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+"_"+n+".html";return{file:f,slot:sl,n:n}}
+function rsTarget(){var d=new Date(),h=d.getHours(),sl="09:00";if(h<7){d=new Date(d.getTime()-864e5)}else if(h<9){sl="07:00"}
+ var f="news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+".html";return{file:f,slot:sl}}
 function rsShow(){var t=rsTarget();$("rsFile").textContent=t.file;$("rsSlot").textContent="("+t.slot+" 회차 기준)"}
 function rsText(){var t=rsTarget();return"설정페이지(news/news_config.json) 기준으로 기사 재검색해서 "+t.file+" 업데이트해줘."}
 async function rsReq(){
@@ -314,10 +314,10 @@ async function rsReq(){
 $("bRs").onclick=rsReq;
 $("bRsCp").onclick=function(){var x=rsText();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(function(){status("요청문을 복사했습니다: "+x,"ok")},function(){prompt("아래 요청문을 복사해 Claude에게 전달하세요.",x)})};
 
-function nm(d,n){return"news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+"_"+n+".html"}
+function nm(d,n){return"news_"+pad(d.getFullYear()%100)+pad(d.getMonth()+1)+pad(d.getDate())+(n?"_"+n:"")+".html"}
 async function viewLatest(){
- var t=rsTarget(),m=t.file.match(/news_(\d\d)(\d\d)(\d\d)_(\d)/),d=new Date(2000+ +m[1],+m[2]-1,+m[3]),n=+m[4],c=[];
- for(var i=0;i<14;i++){c.push(nm(d,n));if(n===2)n=1;else{n=2;d=new Date(d.getTime()-864e5)}}
+ var t=rsTarget(),m=t.file.match(/news_(\d\d)(\d\d)(\d\d)/),d=new Date(2000+ +m[1],+m[2]-1,+m[3]),c=[];
+ for(var i=0;i<14;i++){c.push(nm(d,0),nm(d,2),nm(d,1));d=new Date(d.getTime()-864e5)}
  $("viewInfo").textContent="확인 중…";
  for(var k=0;k<c.length;k++){try{var r=await fetch(c[k],{method:"HEAD",cache:"no-store"});if(r.ok){$("viewInfo").textContent="최신 파일: "+c[k];window.open(c[k],"_blank");return}}catch(e){$("viewInfo").textContent="최신 파일: "+c[0]+" (존재 여부 미확인)";window.open(c[0],"_blank");return}}
  $("viewInfo").textContent="";status("최근 2주 내 검색결과 파일을 찾지 못했습니다.","err")}
