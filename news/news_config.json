@@ -270,7 +270,7 @@
   "footer": {
     "show": true,
     "text": "Published by Yoon, Hyunchul",
-    "align": "right",
+    "align": "left",
     "size": 12,
     "color": "#616161"
   },
