@@ -3,5 +3,7 @@
   "slot": "09:00",
   "targetFile": "news/news_261112.html",
   "config": "news/news_config.json",
-  "status": "pending"
+  "status": "done",
+  "processedAt": "2026-11-12T11:45:00Z",
+  "note": "2026-11-12 재검색: 설정 변경 반영(경제 증시 뉴스 제외, 사회 중대재해 중심, 다수 게재기사 우선). 증시 5건·일반 사건사고 1건 제거, 신규 8건 추가, 총 53건."
 }
