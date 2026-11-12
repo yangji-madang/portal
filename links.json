@@ -21,6 +21,9 @@
           ]
         },
         {
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "l1",
@@ -33,7 +36,11 @@
               "name": "찬양대 출석현황",
               "url": "https://yangji-madang.github.io/nsgc/zion/dash.html",
               "type": "view"
-            },
+            }
+          ]
+        },
+        {
+          "links": [
             {
               "id": "x9sz8i33",
               "name": "찬양곡목 관리",
