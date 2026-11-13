@@ -305,6 +305,16 @@
               "type": "admin"
             }
           ]
+        },
+        {
+          "links": [
+            {
+              "id": "xu7dvetb",
+              "name": "시중은행금리표",
+              "url": "https://yangji-madang.github.io/SLGFC/Savings_Rates.html",
+              "type": "admin"
+            }
+          ]
         }
       ]
     }
