@@ -341,6 +341,28 @@
           ]
         }
       ]
+    },
+    {
+      "id": "xl6lmp6g",
+      "name": "HOME",
+      "lines": [
+        {
+          "links": [
+            {
+              "id": "xl97m17x",
+              "name": "Home Portal 보기",
+              "url": "https://yangji-madang.github.io/home/home.html",
+              "type": "view"
+            },
+            {
+              "id": "x6dycnf4",
+              "name": "Home Portal 관리",
+              "url": "https://yangji-madang.github.io/home/home_admin.html",
+              "type": "admin"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
