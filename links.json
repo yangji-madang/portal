@@ -243,6 +243,18 @@
               "name": "가입나이보기",
               "url": "https://yangji-madang.github.io/SLGFC/Prod/Prod_Age.html",
               "type": "view"
+            },
+            {
+              "id": "xqko6wgl",
+              "name": "환급률 비교 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/refund_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xo34rklo",
+              "name": "환급률 비교",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/refund.html",
+              "type": "view"
             }
           ]
         },
