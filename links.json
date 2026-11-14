@@ -255,6 +255,12 @@
               "name": "환급률 비교",
               "url": "https://yangji-madang.github.io/SLGFC/Prod/refund.html",
               "type": "view"
+            },
+            {
+              "id": "x73pmqdg",
+              "name": "세금계산",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/tax_simul.html",
+              "type": "view"
             }
           ]
         },
