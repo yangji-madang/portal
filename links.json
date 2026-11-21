@@ -261,6 +261,18 @@
               "name": "세금계산",
               "url": "https://yangji-madang.github.io/SLGFC/consult/tax_simul.html",
               "type": "view"
+            },
+            {
+              "id": "xjfnzkhm",
+              "name": "종신상품 비교",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/jongsin.html",
+              "type": "view"
+            },
+            {
+              "id": "xn2ixkgl",
+              "name": "종신상품 비교 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/Prod/jongsin_admin.html",
+              "type": "admin"
             }
           ]
         },
