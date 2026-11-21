@@ -383,6 +383,22 @@
           ]
         }
       ]
+    },
+    {
+      "id": "xsoctdjm",
+      "name": "Tips",
+      "lines": [
+        {
+          "links": [
+            {
+              "id": "xgxisme0",
+              "name": "클로드코드영상편집",
+              "url": "https://dasikyeo.com/guides/claude-video-editing-setup?fbclid=PAVERTVgVuwSlleHRuA2FlbQIxMABwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp99ewR-JjAU_SUe3AJK2oNqcOvniQ7Vieb4n5yHGgZXOCWg7nO4vHX1ecY9k_aem_OyYOSxT14uajaVwrsNbfUg",
+              "type": "view"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
