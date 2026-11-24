@@ -289,6 +289,7 @@
       "09:00"
     ],
     "excludePolitics": true,
-    "excludePaid": true
+    "excludePaid": true,
+    "dedupe": "동일 기사·동일 사안은 중복 게재 금지. 언론사가 다른 경우 기사 내용이 더 긴(상세한) 매체 기사 1건만 기재"
   }
 }
