@@ -41,7 +41,7 @@ body.edit .edit-only{display:inline-block}
 </head>
 <body>
 <div class="wrap">
-<div class="bar" id="bar"><label><input type="checkbox" id="tg"> <b>편집 모드</b></label><button class="edit-only" id="badd">기사 추가</button><button class="edit-only" id="bsave">깨끗한 HTML로 저장</button></div>
+<div class="bar" id="bar"><label><input type="checkbox" id="tg"> <b>편집 모드</b></label><button class="edit-only" id="badd">기사 추가</button><button class="edit-only" id="bsave">깨끗한 HTML로 저장</button><button class="edit-only" id="bgh">GitHub에 올리기</button></div>
 
 <h1><span>윤대감 세상 훑어보기</span><span class="dt">2026.11.13(금)</span></h1>
 
@@ -211,6 +211,7 @@ body.edit .edit-only{display:inline-block}
  <div style="display:flex;gap:6px;justify-content:flex-end"><button id="ac" style="padding:3px 10px;cursor:pointer">취소</button><button id="ao" style="padding:3px 10px;cursor:pointer">추가</button></div>
 </div></div>
 
+<div id="ghp" style="display:none;position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:60;width:min(92vw,440px);background:#fff;border:2px solid #333;border-radius:8px;padding:14px;font:14px/1.5 'Malgun Gothic',sans-serif;color:#111;box-shadow:0 4px 18px rgba(0,0,0,.3)"><b>GitHub에 올리기</b> <span style="font-size:12px;color:#555">(yangji-madang/portal · news/news_261113.html)</span><div style="margin:8px 0 4px">토큰(Fine-grained PAT, Contents 읽기/쓰기)</div><input id="ght" type="password" autocomplete="off" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"><label style="display:block;margin-top:6px"><input type="checkbox" id="ghr"> 이 브라우저에 토큰 저장</label><label style="display:block"><input type="checkbox" id="ghk"> 편집 기능 유지하여 올리기(체크 해제 시 깨끗한 최종본)</label><div id="ghs" style="margin:8px 0;min-height:20px;font-size:13px"></div><button id="gho" style="padding:6px 14px">올리기</button> <button id="ghc" style="padding:6px 14px">닫기</button></div>
 <script>
 (function(){
 var FILE="news_261113.html",target=null,drag=null;
@@ -284,16 +285,44 @@ var ap=document.getElementById("addp"),aph=document.getElementById("aph"),ax0=0,
 aph.addEventListener("pointerdown",function(e){var r=ap.getBoundingClientRect();ap.style.transform="none";ap.style.left=r.left+"px";ap.style.top=r.top+"px";ax0=e.clientX-r.left;ay0=e.clientY-r.top;am=true;aph.setPointerCapture(e.pointerId)});
 aph.addEventListener("pointermove",function(e){if(am){ap.style.left=(e.clientX-ax0)+"px";ap.style.top=(e.clientY-ay0)+"px"}});
 aph.addEventListener("pointerup",function(){am=false});
-document.getElementById("bsave").onclick=function(){
+function buildClean(keep){
  var c=document.documentElement.cloneNode(true);
- c.querySelectorAll(".ctl,#bar,#pop,#addp,script").forEach(function(x){x.remove()});
+ c.querySelectorAll(".ctl,#ghp").forEach(function(x){x.remove()});
+ if(!keep)c.querySelectorAll("#bar,#pop,#addp,script").forEach(function(x){x.remove()});
  c.querySelectorAll("h2").forEach(function(h){var n=h.nextElementSibling;if(n&&n.classList.contains("items")&&!n.querySelector(".item")){n.remove();h.remove()}});
  c.querySelectorAll("[draggable]").forEach(function(x){x.removeAttribute("draggable")});
  c.querySelectorAll(".dragover").forEach(function(x){x.classList.remove("dragover")});
  c.querySelector("body").classList.remove("edit");
- var bl=new Blob(["<!DOCTYPE html>\n"+c.outerHTML],{type:"text/html;charset=utf-8"}),a=document.createElement("a");
+ var tgc=c.querySelector("#tg");if(tgc)tgc.removeAttribute("checked");
+ return "<!DOCTYPE html>\n"+c.outerHTML}
+document.getElementById("bsave").onclick=function(){
+ var bl=new Blob([buildClean(false)],{type:"text/html;charset=utf-8"}),a=document.createElement("a");
  a.href=URL.createObjectURL(bl);a.download=FILE;document.body.appendChild(a);a.click();a.remove();
 };
+var GH_REPO="yangji-madang/portal",GH_PATH="news/"+FILE,GH_BRANCH="main";
+var ghp=document.getElementById("ghp"),gst=document.getElementById("ghs"),gtk=document.getElementById("ght"),gre=document.getElementById("ghr"),gkp=document.getElementById("ghk");
+try{var sv=localStorage.getItem("gh_news_token");if(sv){gtk.value=sv;gre.checked=true}}catch(x){}
+function gmsg(t,ok){gst.textContent=t;gst.style.color=ok===false?"#b00020":(ok?"#0a6b2d":"#333")}
+document.getElementById("bgh").onclick=function(){gmsg("",null);ghp.style.display="block"};
+document.getElementById("ghc").onclick=function(){ghp.style.display="none"};
+function b64(s){return btoa(unescape(encodeURIComponent(s)))}
+document.getElementById("gho").onclick=function(){
+ var tk=gtk.value.trim();if(!tk){gmsg("토큰을 입력하세요.",false);return}
+ try{if(gre.checked)localStorage.setItem("gh_news_token",tk);else localStorage.removeItem("gh_news_token")}catch(x){}
+ var html=buildClean(gkp.checked),btn=this;btn.disabled=true;gmsg("GitHub 확인 중…");
+ var api="https://api.github.com/repos/"+GH_REPO+"/contents/"+GH_PATH.split("/").map(encodeURIComponent).join("/"),
+  H={"Authorization":"Bearer "+tk,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};
+ fetch(api+"?ref="+GH_BRANCH,{headers:H,cache:"no-store"}).then(function(r){
+  if(r.status===404)return null;
+  if(r.status===401||r.status===403)throw new Error("토큰 인증 실패(권한 확인: Contents 읽기/쓰기)");
+  if(!r.ok)throw new Error("조회 실패 "+r.status);return r.json()}).then(function(j){
+  gmsg("올리는 중…");
+  var body={message:"news "+FILE+": 편집본 업로드(웹 편집)",content:b64(html),branch:GH_BRANCH};
+  if(j&&j.sha)body.sha=j.sha;
+  return fetch(api,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify(body)})}).then(function(r){
+  if(!r.ok)return r.json().then(function(e){throw new Error((e&&e.message)||("업로드 실패 "+r.status))});return r.json()}).then(function(j){
+  gmsg("올리기 완료 ✔ 커밋 "+(j.commit&&j.commit.sha?j.commit.sha.slice(0,7):"")+" — 페이지 반영까지 1~2분 걸릴 수 있습니다.",true)}).catch(function(e){
+  gmsg("실패: "+e.message,false)}).then(function(){btn.disabled=false})};
 })();
 </script>
 </body>
