@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>윤대감 세상 훑어보기 2026.11.25(수)</title>
@@ -39,9 +38,9 @@ body.edit .edit-only{display:inline-block}
 }
 </style>
 </head>
-<body>
+<body class="">
 <div class="wrap">
-<div class="bar" id="bar"><label><input type="checkbox" id="tg"> <b>편집 모드</b></label><button class="edit-only" id="badd">기사 추가</button><button class="edit-only" id="bsave">깨끗한 HTML로 저장</button><button class="edit-only" id="bgh">GitHub에 올리기</button></div>
+
 
 <h1><span>윤대감 세상 훑어보기</span><span class="dt">2026.11.25(수)</span></h1>
 
@@ -175,8 +174,8 @@ body.edit .edit-only{display:inline-block}
 <p class="s">- 24일 삼성전자 6.7% 오른 18만9400원, SK하이닉스 6.73% 오른 115만8000원 마감</p>
 <p class="s">- 글로벌 IB, 메모리 가격 하락 반영해 삼성전자·SK하이닉스 2028년 영업이익 전망 각각 26%·23% 하향</p>
 </div>
-<div class="item"><div class="h"><a href="https://www.hankyung.com/article/2026112455706" target="_blank" rel="noopener">"삼성E&A, 그룹사 투자에 수주 탄탄…목표가↑"-대신</a> (<a href="https://www.hankyung.com/article/2026112455706" target="_blank" rel="noopener">한국경제</a>, 11.24)</div>
-<p class="s">- 대신증권, 삼성E&A 목표주가 7만5000원에서 8만4000원으로 상향</p>
+<div class="item"><div class="h"><a href="https://www.hankyung.com/article/2026112455706" target="_blank" rel="noopener">"삼성E&amp;A, 그룹사 투자에 수주 탄탄…목표가↑"-대신</a> (<a href="https://www.hankyung.com/article/2026112455706" target="_blank" rel="noopener">한국경제</a>, 11.24)</div>
+<p class="s">- 대신증권, 삼성E&amp;A 목표주가 7만5000원에서 8만4000원으로 상향</p>
 <p class="s">- 올해 신규 수주 목표 12조 원→19조 원, 7800억 원 규모 특별 자사주 매입 추진</p>
 </div>
 <div class="item"><div class="h"><a href="https://www.news1.kr/industry/general-industry/6363168" target="_blank" rel="noopener">한화솔루션, 자회사 한화도시개발 흡수합병…경영 효율화 추진</a> (<a href="https://www.news1.kr/industry/general-industry/6363168" target="_blank" rel="noopener">뉴스1</a>, 11.23)</div>
@@ -273,135 +272,12 @@ body.edit .edit-only{display:inline-block}
 <div class="from">Published by Yoon, Hyunchul</div>
 </div>
 
-<div id="pop"><div class="ph" id="ph">코멘트 추가 (끌어서 이동)</div><div class="pb">
- <textarea id="pt" rows="3" placeholder="추가 멘트"></textarea>
- <input id="pu" placeholder="링크(선택) https://...">
- <div style="display:flex;gap:6px;justify-content:flex-end"><button id="pc" style="padding:3px 10px;cursor:pointer">취소</button><button id="po" style="padding:3px 10px;cursor:pointer">확인</button></div>
-</div></div>
 
-<div id="addp"><div class="ph" id="aph">기사 추가 (끌어서 이동)</div><div class="pb">
- <select id="as"></select>
- <input id="at" placeholder="기사 제목">
- <input id="am" placeholder="출처(예: 한국경제, 뉴스1)">
- <input id="ad" placeholder="보도일(예: 11.07)">
- <input id="au" placeholder="기사 링크 https://...">
- <textarea id="ax" rows="3" placeholder="요약 3줄 이내 (한 줄에 한 문장, 명사형 종결, '-'는 자동 부여)"></textarea>
- <div style="display:flex;gap:6px;justify-content:flex-end"><button id="ac" style="padding:3px 10px;cursor:pointer">취소</button><button id="ao" style="padding:3px 10px;cursor:pointer">추가</button></div>
-</div></div>
 
-<div id="ghp" style="display:none;position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:60;width:min(92vw,440px);background:#fff;border:2px solid #333;border-radius:8px;padding:14px;font:14px/1.5 'Malgun Gothic',sans-serif;color:#111;box-shadow:0 4px 18px rgba(0,0,0,.3)"><b>GitHub에 올리기</b> <span style="font-size:12px;color:#555">(yangji-madang/portal · news/news_261125.html)</span><div style="margin:8px 0 4px">토큰(Fine-grained PAT, Contents 읽기/쓰기)</div><input id="ght" type="password" autocomplete="off" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"><label style="display:block;margin-top:6px"><input type="checkbox" id="ghr"> 이 브라우저에 토큰 저장</label><label style="display:block"><input type="checkbox" id="ghk"> 편집 기능 유지하여 올리기(체크 해제 시 깨끗한 최종본)</label><div id="ghs" style="margin:8px 0;min-height:20px;font-size:13px"></div><button id="gho" style="padding:6px 14px">올리기</button> <button id="ghc" style="padding:6px 14px">닫기</button></div>
-<script>
-(function(){
-var FILE="news_261125.html",target=null,drag=null;
-var tg=document.getElementById("tg");
-function mkctl(){var d=document.createElement("div");d.className="ctl";
- [["▲","up"],["▼","down"],["코멘트","cm"],["삭제","del"]].forEach(function(a){var b=document.createElement("button");b.textContent=a[0];b.dataset.a=a[1];d.appendChild(b)});return d}
-function setup(on){
- document.body.classList.toggle("edit",on);
- document.querySelectorAll(".item").forEach(function(e){
-  if(on){e.setAttribute("draggable","true");if(!e.querySelector(".ctl"))e.appendChild(mkctl())}
-  else{e.removeAttribute("draggable")}
- });
- if(!on)document.querySelectorAll(".ctl").forEach(function(c){c.remove()});
-}
-tg.addEventListener("change",function(){setup(tg.checked)});
-document.addEventListener("click",function(ev){
- var b=ev.target.closest(".ctl button");if(!b)return;
- var box=b.parentNode.parentNode,a=b.dataset.a;
- if(a==="del"){if(confirm("이 기사를 삭제할까요?"))box.remove()}
- else if(a==="up"){var p=box.previousElementSibling;if(p)box.parentNode.insertBefore(box,p)}
- else if(a==="down"){var n=box.nextElementSibling;if(n)box.parentNode.insertBefore(n,box)}
- else if(a==="cm"){target=box;document.getElementById("pt").value="";document.getElementById("pu").value="";document.getElementById("pop").style.display="block"}
-});
-document.getElementById("pc").onclick=function(){document.getElementById("pop").style.display="none"};
-document.getElementById("po").onclick=function(){
- var t=document.getElementById("pt").value.trim(),u=document.getElementById("pu").value.trim();
- if(t&&target){var d=document.createElement("p");d.className="s cm";var b=document.createElement("b");b.textContent="<윤대감 註> ";d.appendChild(b);d.appendChild(document.createTextNode(t+" "));
-  if(/^https?:\/\//i.test(u)){var a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";a.textContent=u;d.appendChild(a)}
-  target.insertBefore(d,target.querySelector(".ctl"))}
- document.getElementById("pop").style.display="none"};
-document.addEventListener("dragstart",function(e){var it=e.target.closest&&e.target.closest(".item");if(it&&document.body.classList.contains("edit")){drag=it;e.dataTransfer.effectAllowed="move";try{e.dataTransfer.setData("text/plain","x")}catch(x){}}});
-document.addEventListener("dragover",function(e){if(!drag)return;var it=e.target.closest(".item");if(it&&it!==drag&&it.parentNode===drag.parentNode){e.preventDefault();it.classList.add("dragover")}});
-document.addEventListener("dragleave",function(e){var it=e.target.closest&&e.target.closest(".item");if(it)it.classList.remove("dragover")});
-document.addEventListener("drop",function(e){if(!drag)return;var it=e.target.closest(".item");if(it&&it!==drag&&it.parentNode===drag.parentNode){e.preventDefault();it.classList.remove("dragover");var r=it.getBoundingClientRect();it.parentNode.insertBefore(drag,(e.clientY>r.top+r.height/2)?it.nextSibling:it)}drag=null});
-document.addEventListener("dragend",function(){drag=null;document.querySelectorAll(".dragover").forEach(function(x){x.classList.remove("dragover")})});
-var pop=document.getElementById("pop"),ph=document.getElementById("ph"),ox=0,oy=0,mv=false;
-ph.addEventListener("pointerdown",function(e){var r=pop.getBoundingClientRect();pop.style.transform="none";pop.style.left=r.left+"px";pop.style.top=r.top+"px";ox=e.clientX-r.left;oy=e.clientY-r.top;mv=true;ph.setPointerCapture(e.pointerId)});
-ph.addEventListener("pointermove",function(e){if(mv){pop.style.left=(e.clientX-ox)+"px";pop.style.top=(e.clientY-oy)+"px"}});
-ph.addEventListener("pointerup",function(){mv=false});
 
-var SEC=["경제","사회","정책","IT","기업","의료.건강","금융","법률"];
-var sel=document.getElementById("as");SEC.forEach(function(n){var o=document.createElement("option");o.value=n;o.textContent=n;sel.appendChild(o)});
-function secBox(name){
- var hs=[].slice.call(document.querySelectorAll(".wrap h2")),h=null;
- hs.forEach(function(x){if(x.textContent.replace(/^■\s*/,"")===name)h=x});
- if(h)return h.nextElementSibling;
- h=document.createElement("h2");h.textContent="■ "+name;var box=document.createElement("div");box.className="items";
- var idx=SEC.indexOf(name),ref=document.querySelector(".from");
- for(var i=0;i<hs.length;i++){if(SEC.indexOf(hs[i].textContent.replace(/^■\s*/,""))>idx){ref=hs[i];break}}
- ref.parentNode.insertBefore(h,ref);ref.parentNode.insertBefore(box,ref);return box}
-document.getElementById("badd").onclick=function(){["at","am","ad","au","ax"].forEach(function(i){document.getElementById(i).value=""});document.getElementById("addp").style.display="block"};
-document.getElementById("ac").onclick=function(){document.getElementById("addp").style.display="none"};
-document.getElementById("ao").onclick=function(){
- var t=document.getElementById("at").value.trim(),m=document.getElementById("am").value.trim(),d=document.getElementById("ad").value.trim(),u=document.getElementById("au").value.trim();
- var ls=document.getElementById("ax").value.split("\n").map(function(x){return x.replace(/^\s*-\s*/,"").trim()}).filter(Boolean).slice(0,3);
- if(!t){alert("기사 제목을 입력하세요.");return}
- if(u&&!/^https?:\/\//i.test(u)){alert("링크는 http(s)://로 시작해야 합니다.");return}
- var it=document.createElement("div");it.className="item";var h=document.createElement("div");h.className="h";
- if(u){var a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";a.textContent=t;h.appendChild(a)}else h.appendChild(document.createTextNode(t));
- var meta=[m,d].filter(Boolean).join(", ");
- if(meta){h.appendChild(document.createTextNode(" ("));
-  if(m&&u){var b=document.createElement("a");b.href=u;b.target="_blank";b.rel="noopener";b.textContent=m;h.appendChild(b);h.appendChild(document.createTextNode(d?", "+d:""))}
-  else h.appendChild(document.createTextNode(meta));
-  h.appendChild(document.createTextNode(")"))}
- it.appendChild(h);
- ls.forEach(function(x){var p=document.createElement("p");p.className="s";p.textContent="- "+x;it.appendChild(p)});
- var box=secBox(sel.value);box.appendChild(it);
- if(document.body.classList.contains("edit")){it.setAttribute("draggable","true");it.appendChild(mkctl())}
- document.getElementById("addp").style.display="none";it.scrollIntoView({block:"center"})};
-var ap=document.getElementById("addp"),aph=document.getElementById("aph"),ax0=0,ay0=0,am=false;
-aph.addEventListener("pointerdown",function(e){var r=ap.getBoundingClientRect();ap.style.transform="none";ap.style.left=r.left+"px";ap.style.top=r.top+"px";ax0=e.clientX-r.left;ay0=e.clientY-r.top;am=true;aph.setPointerCapture(e.pointerId)});
-aph.addEventListener("pointermove",function(e){if(am){ap.style.left=(e.clientX-ax0)+"px";ap.style.top=(e.clientY-ay0)+"px"}});
-aph.addEventListener("pointerup",function(){am=false});
-function buildClean(keep){
- var c=document.documentElement.cloneNode(true);
- c.querySelectorAll(".ctl,#ghp").forEach(function(x){x.remove()});
- if(!keep)c.querySelectorAll("#bar,#pop,#addp,script").forEach(function(x){x.remove()});
- c.querySelectorAll("h2").forEach(function(h){var n=h.nextElementSibling;if(n&&n.classList.contains("items")&&!n.querySelector(".item")){n.remove();h.remove()}});
- c.querySelectorAll("[draggable]").forEach(function(x){x.removeAttribute("draggable")});
- c.querySelectorAll(".dragover").forEach(function(x){x.classList.remove("dragover")});
- c.querySelector("body").classList.remove("edit");
- var tgc=c.querySelector("#tg");if(tgc)tgc.removeAttribute("checked");
- return "<!DOCTYPE html>\n"+c.outerHTML}
-document.getElementById("bsave").onclick=function(){
- var bl=new Blob([buildClean(false)],{type:"text/html;charset=utf-8"}),a=document.createElement("a");
- a.href=URL.createObjectURL(bl);a.download=FILE;document.body.appendChild(a);a.click();a.remove();
-};
-var GH_REPO="yangji-madang/portal",GH_PATH="news/"+FILE,GH_BRANCH="main";
-var ghp=document.getElementById("ghp"),gst=document.getElementById("ghs"),gtk=document.getElementById("ght"),gre=document.getElementById("ghr"),gkp=document.getElementById("ghk");
-try{var sv=localStorage.getItem("gh_news_token");if(sv){gtk.value=sv;gre.checked=true}}catch(x){}
-function gmsg(t,ok){gst.textContent=t;gst.style.color=ok===false?"#b00020":(ok?"#0a6b2d":"#333")}
-document.getElementById("bgh").onclick=function(){gmsg("",null);ghp.style.display="block"};
-document.getElementById("ghc").onclick=function(){ghp.style.display="none"};
-function b64(s){return btoa(unescape(encodeURIComponent(s)))}
-document.getElementById("gho").onclick=function(){
- var tk=gtk.value.trim();if(!tk){gmsg("토큰을 입력하세요.",false);return}
- try{if(gre.checked)localStorage.setItem("gh_news_token",tk);else localStorage.removeItem("gh_news_token")}catch(x){}
- var html=buildClean(gkp.checked),btn=this;btn.disabled=true;gmsg("GitHub 확인 중…");
- var api="https://api.github.com/repos/"+GH_REPO+"/contents/"+GH_PATH.split("/").map(encodeURIComponent).join("/"),
-  H={"Authorization":"Bearer "+tk,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};
- fetch(api+"?ref="+GH_BRANCH,{headers:H,cache:"no-store"}).then(function(r){
-  if(r.status===404)return null;
-  if(r.status===401||r.status===403)throw new Error("토큰 인증 실패(권한 확인: Contents 읽기/쓰기)");
-  if(!r.ok)throw new Error("조회 실패 "+r.status);return r.json()}).then(function(j){
-  gmsg("올리는 중…");
-  var body={message:"news "+FILE+": 편집본 업로드(웹 편집)",content:b64(html),branch:GH_BRANCH};
-  if(j&&j.sha)body.sha=j.sha;
-  return fetch(api,{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},H),body:JSON.stringify(body)})}).then(function(r){
-  if(!r.ok)return r.json().then(function(e){throw new Error((e&&e.message)||("업로드 실패 "+r.status))});return r.json()}).then(function(j){
-  gmsg("올리기 완료 ✔ 커밋 "+(j.commit&&j.commit.sha?j.commit.sha.slice(0,7):"")+" — 페이지 반영까지 1~2분 걸릴 수 있습니다.",true)}).catch(function(e){
-  gmsg("실패: "+e.message,false)}).then(function(){btn.disabled=false})};
-})();
-</script>
-</body>
-</html>
+
+
+
+
+
+</body></html>
