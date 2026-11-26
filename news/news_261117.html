@@ -160,13 +160,14 @@ body.edit .edit-only{display:inline-block}
  <div style="display:flex;gap:6px;justify-content:flex-end"><button id="ac" style="padding:3px 10px;cursor:pointer">취소</button><button id="ao" style="padding:3px 10px;cursor:pointer">추가</button></div>
 </div></div>
 
+<div id="edp" style="display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:60;width:min(94vw,520px);background:#fff;border:2px solid #333;border-radius:8px;padding:14px;font:14px/1.5 'Malgun Gothic',sans-serif;color:#111;box-shadow:0 4px 18px rgba(0,0,0,.3)"><b>기사 수정</b><div style="margin-top:8px">제목</div><input id="et" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"><div style="display:flex;gap:6px;margin-top:6px"><div style="flex:2">출처<input id="es" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"></div><div style="flex:1">날짜<input id="ee" placeholder="11.26" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"></div></div><div style="margin-top:6px">링크(http…)</div><input id="eu" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"><div style="margin-top:6px">요약(한 줄에 한 문장, 앞의 - 는 자동)</div><textarea id="ex" rows="5" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"></textarea><div style="margin-top:8px"><button id="eo" style="padding:6px 14px">적용</button> <button id="ec" style="padding:6px 14px">취소</button></div></div>
 <div id="ghp" style="display:none;position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:60;width:min(92vw,440px);background:#fff;border:2px solid #333;border-radius:8px;padding:14px;font:14px/1.5 'Malgun Gothic',sans-serif;color:#111;box-shadow:0 4px 18px rgba(0,0,0,.3)"><b>GitHub에 올리기</b> <span style="font-size:12px;color:#555">(yangji-madang/portal · news/news_261117.html)</span><div style="margin:8px 0 4px">토큰(Fine-grained PAT, Contents 읽기/쓰기)</div><input id="ght" type="password" autocomplete="off" style="width:100%;box-sizing:border-box;padding:6px;font-size:14px"><label style="display:block;margin-top:6px"><input type="checkbox" id="ghr"> 이 브라우저에 토큰 저장</label><label style="display:block"><input type="checkbox" id="ghk"> 편집 기능 유지하여 올리기(체크 해제 시 깨끗한 최종본)</label><div id="ghs" style="margin:8px 0;min-height:20px;font-size:13px"></div><button id="gho" style="padding:6px 14px">올리기</button> <button id="ghc" style="padding:6px 14px">닫기</button></div>
 <script>
 (function(){
 var FILE="news_261117.html",target=null,drag=null;
 var tg=document.getElementById("tg");
 function mkctl(){var d=document.createElement("div");d.className="ctl";
- [["▲","up"],["▼","down"],["코멘트","cm"],["삭제","del"]].forEach(function(a){var b=document.createElement("button");b.textContent=a[0];b.dataset.a=a[1];d.appendChild(b)});return d}
+ [["▲","up"],["▼","down"],["수정","ed"],["코멘트","cm"],["삭제","del"]].forEach(function(a){var b=document.createElement("button");b.textContent=a[0];b.dataset.a=a[1];d.appendChild(b)});return d}
 function setup(on){
  document.body.classList.toggle("edit",on);
  document.querySelectorAll(".item").forEach(function(e){
@@ -201,6 +202,34 @@ ph.addEventListener("pointerdown",function(e){var r=pop.getBoundingClientRect();
 ph.addEventListener("pointermove",function(e){if(mv){pop.style.left=(e.clientX-ox)+"px";pop.style.top=(e.clientY-oy)+"px"}});
 ph.addEventListener("pointerup",function(){mv=false});
 
+var edT=null;
+function openEd(box){
+ edT=box;var h=box.querySelector(".h"),as=h.querySelectorAll("a"),title,src="",date="",url="";
+ var txt=h.textContent,m=txt.match(/\(([^()]*)\)\s*$/),meta=m?m[1]:"";
+ if(as.length){title=as[0].textContent;url=as[0].getAttribute("href")||"";src=as.length>1?as[as.length-1].textContent:""}
+ else title=m?txt.slice(0,m.index).trim():txt.trim();
+ if(meta){var k=meta.lastIndexOf(", ");if(k>=0){src=src||meta.slice(0,k);date=meta.slice(k+2)}else if(/^\d{1,2}\.\d{1,2}$/.test(meta))date=meta;else src=src||meta}
+ document.getElementById("et").value=title;document.getElementById("es").value=src;document.getElementById("ee").value=date;document.getElementById("eu").value=url;
+ document.getElementById("ex").value=[].slice.call(box.querySelectorAll("p.s:not(.cm)")).map(function(p){return p.textContent.replace(/^\s*-\s*/,"")}).join("\n");
+ document.getElementById("edp").style.display="block"}
+document.addEventListener("click",function(ev){var b=ev.target.closest(".ctl button");if(b&&b.dataset.a==="ed")openEd(b.parentNode.parentNode)});
+document.getElementById("ec").onclick=function(){document.getElementById("edp").style.display="none"};
+document.getElementById("eo").onclick=function(){
+ var t=document.getElementById("et").value.trim(),s=document.getElementById("es").value.trim(),d=document.getElementById("ee").value.trim(),u=document.getElementById("eu").value.trim();
+ var ls=document.getElementById("ex").value.split("\n").map(function(x){return x.replace(/^\s*-\s*/,"").trim()}).filter(Boolean);
+ if(!t){alert("제목을 입력하세요.");return}
+ if(u&&!/^https?:\/\//i.test(u)){alert("링크는 http(s)://로 시작해야 합니다.");return}
+ var box=edT,h=box.querySelector(".h");h.textContent="";
+ function A(x,tx){var a=document.createElement("a");a.href=x;a.target="_blank";a.rel="noopener";a.textContent=tx;return a}
+ if(u)h.appendChild(A(u,t));else h.appendChild(document.createTextNode(t));
+ var meta=[s,d].filter(Boolean).join(", ");
+ if(meta){h.appendChild(document.createTextNode(" ("));
+  if(s&&u){h.appendChild(A(u,s));if(d)h.appendChild(document.createTextNode(", "+d))}else h.appendChild(document.createTextNode(meta));
+  h.appendChild(document.createTextNode(")"))}
+ box.querySelectorAll("p.s:not(.cm)").forEach(function(p){p.remove()});
+ var ref=box.querySelector(".cm")||box.querySelector(".ctl");
+ ls.forEach(function(x){var p=document.createElement("p");p.className="s";p.textContent="- "+x;box.insertBefore(p,ref)});
+ document.getElementById("edp").style.display="none"};
 var SEC=["경제","사회","정책","IT","기업","의료.건강","금융","법률"];
 var sel=document.getElementById("as");SEC.forEach(function(n){var o=document.createElement("option");o.value=n;o.textContent=n;sel.appendChild(o)});
 function secBox(name){
@@ -236,8 +265,8 @@ aph.addEventListener("pointermove",function(e){if(am){ap.style.left=(e.clientX-a
 aph.addEventListener("pointerup",function(){am=false});
 function buildClean(keep){
  var c=document.documentElement.cloneNode(true);
- c.querySelectorAll(".ctl,#ghp").forEach(function(x){x.remove()});
- if(!keep)c.querySelectorAll("#bar,#pop,#addp,script").forEach(function(x){x.remove()});
+ c.querySelectorAll(".ctl,#ghp,#edp").forEach(function(x){x.remove()});
+ if(!keep)c.querySelectorAll("#bar,#pop,#addp,#edp,script").forEach(function(x){x.remove()});
  c.querySelectorAll("h2").forEach(function(h){var n=h.nextElementSibling;if(n&&n.classList.contains("items")&&!n.querySelector(".item")){n.remove();h.remove()}});
  c.querySelectorAll("[draggable]").forEach(function(x){x.removeAttribute("draggable")});
  c.querySelectorAll(".dragover").forEach(function(x){x.classList.remove("dragover")});
