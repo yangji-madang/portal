@@ -427,6 +427,12 @@
               "name": "조회수 확인",
               "url": "https://yangjimadang.goatcounter.com/",
               "type": "view"
+            },
+            {
+              "id": "xrx5kjwq",
+              "name": "오픈소스 백엔드 플랫폼",
+              "url": "https://supabase.com/",
+              "type": "view"
             }
           ]
         }
