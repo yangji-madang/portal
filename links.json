@@ -303,7 +303,11 @@
               "name": "정보지원정책 내회사찾기",
               "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_match.html",
               "type": "view"
-            },
+            }
+          ]
+        },
+        {
+          "links": [
             {
               "id": "xrzuosbw",
               "name": "고용유지지원금 보기",
