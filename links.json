@@ -415,6 +415,22 @@
           ]
         }
       ]
+    },
+    {
+      "id": "x0955jv4",
+      "name": "AI Tools",
+      "lines": [
+        {
+          "links": [
+            {
+              "id": "xugj91ab",
+              "name": "조회수 확인",
+              "url": "https://yangjimadang.goatcounter.com/",
+              "type": "view"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
