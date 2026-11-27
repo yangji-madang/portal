@@ -179,25 +179,25 @@
             {
               "id": "x83kgnfk",
               "name": "법인세 상세",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info-admin.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info_admin.html",
               "type": "admin"
             },
             {
               "id": "x80th13v",
               "name": "상속세 상세",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/inhtax_info-admin.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inhtax_info_admin.html",
               "type": "admin"
             },
             {
               "id": "xpy2lxcd",
               "name": "증여세 상세",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/gifttax_info-admin.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/gifttax_info_admin.html",
               "type": "admin"
             },
             {
               "id": "xs20p812",
               "name": "종소세 상세",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/inctax_info-admin.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/inctax_info_admin.html",
               "type": "admin"
             }
           ]
