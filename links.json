@@ -187,6 +187,18 @@
               "name": "정관컨설팅 보기",
               "url": "https://yangji-madang.github.io/SLGFC/consult/aol.html",
               "type": "view"
+            },
+            {
+              "id": "xwu8fbl2",
+              "name": "정관컨설팅 Info 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aol_info_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xcejkd7g",
+              "name": "정관컨설팅 info 보",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aol_info.html",
+              "type": "view"
             }
           ]
         },
