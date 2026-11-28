@@ -17,6 +17,7 @@
   .cat h2 { margin:0 0 8px; font-size:17px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:5px; }
   .links { display:flex; flex-direction:column; gap:8px; }
   .line { display:flex; flex-wrap:wrap; gap:8px; }
+  .divider { height:0; border-top:1px solid #c5ccd8; }
   .links a { display:inline-block; padding:2px 6px; line-height:1.3; border:1px solid var(--line); border-radius:8px; color:var(--ink); text-decoration:none; font-weight:600; background:#f9fafc; }
   .links a.admin { background:var(--adm-bg); border-color:var(--adm-line); color:var(--adm-ink); }
   .links a.view { background:var(--view-bg); border-color:var(--view-line); color:var(--view-ink); }
@@ -39,12 +40,22 @@
   var root = document.getElementById('root');
   /* lines 형식이 있으면 그대로, 없으면 기존 links(+br) 형식을 줄로 변환 */
   function linesOf(c) {
-    if (Array.isArray(c.lines)) return c.lines.map(function (ln) { return (ln && ln.links) || []; });
+    if (Array.isArray(c.lines)) return c.lines.map(function (ln) { return { divider: !!(ln && ln.divider), links: (ln && ln.links) || [] }; });
     var out = [], cur = null;
     (c.links || []).forEach(function (l) {
-      if (!cur || l.br === true) { cur = []; out.push(cur); }
-      cur.push(l);
+      if (!cur || l.br === true) { cur = { divider: false, links: [] }; out.push(cur); }
+      cur.links.push(l);
     });
+    return out;
+  }
+  /* 비어 있는 줄은 숨기고, 맨 앞·맨 뒤·연속된 가로줄은 표시하지 않는다 */
+  function visibleItems(c) {
+    var out = [];
+    linesOf(c).filter(function (it) { return it.divider || it.links.length; }).forEach(function (it) {
+      if (it.divider && (!out.length || out[out.length - 1].divider)) return;
+      out.push(it);
+    });
+    while (out.length && out[out.length - 1].divider) out.pop();
     return out;
   }
   function render(data) {
@@ -59,14 +70,20 @@
       box.appendChild(h);
       var wrap = document.createElement('div');
       wrap.className = 'links';
-      var lines = linesOf(c).filter(function (ln) { return ln.length; });
-      if (!lines.length) {
+      var items = visibleItems(c);
+      if (!items.length) {
         var e = document.createElement('span'); e.className = 'empty'; e.textContent = '링크 없음'; wrap.appendChild(e);
       } else {
-        lines.forEach(function (ln) {
+        items.forEach(function (it) {
+          if (it.divider) {
+            var hr = document.createElement('div');
+            hr.className = 'divider'; hr.setAttribute('role', 'separator');
+            wrap.appendChild(hr);
+            return;
+          }
           var line = document.createElement('div');
           line.className = 'line';
-          ln.forEach(function (l) {
+          it.links.forEach(function (l) {
             var a = document.createElement('a');
             a.className = l.type === 'admin' ? 'admin' : 'view'; a.href = l.url; a.textContent = l.name; a.target = '_blank'; a.rel = 'noopener';
             line.appendChild(a);
