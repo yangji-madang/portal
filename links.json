@@ -177,6 +177,22 @@
         {
           "links": [
             {
+              "id": "xw1fyn7n",
+              "name": "정관컨설팅 관리",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aoi_admin.html",
+              "type": "admin"
+            },
+            {
+              "id": "xt1dv1b4",
+              "name": "정관컨설팅 보기",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aoi.html",
+              "type": "view"
+            }
+          ]
+        },
+        {
+          "links": [
+            {
               "id": "x83kgnfk",
               "name": "법인세 상세",
               "url": "https://yangji-madang.github.io/SLGFC/consult/corptax_info_admin.html",
