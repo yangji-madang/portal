@@ -179,13 +179,13 @@
             {
               "id": "xw1fyn7n",
               "name": "정관컨설팅 관리",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/aoi_admin.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aol_admin.html",
               "type": "admin"
             },
             {
               "id": "xt1dv1b4",
               "name": "정관컨설팅 보기",
-              "url": "https://yangji-madang.github.io/SLGFC/consult/aoi.html",
+              "url": "https://yangji-madang.github.io/SLGFC/consult/aol.html",
               "type": "view"
             }
           ]
