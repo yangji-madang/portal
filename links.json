@@ -21,6 +21,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "l1",
@@ -35,6 +39,10 @@
               "type": "view"
             }
           ]
+        },
+        {
+          "divider": true,
+          "links": []
         },
         {
           "links": [
@@ -81,6 +89,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "x7m5pxux",
@@ -115,6 +127,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "xuiy2ncb",
@@ -123,6 +139,10 @@
               "type": "view"
             }
           ]
+        },
+        {
+          "divider": true,
+          "links": []
         },
         {
           "links": [
@@ -175,6 +195,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "xw1fyn7n",
@@ -201,6 +225,10 @@
               "type": "view"
             }
           ]
+        },
+        {
+          "divider": true,
+          "links": []
         },
         {
           "links": [
@@ -259,6 +287,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "x0q3yt2r",
@@ -299,18 +331,27 @@
               "name": "종신상품 비교 관리",
               "url": "https://yangji-madang.github.io/SLGFC/Prod/jongsin_admin.html",
               "type": "admin"
-            }
-          ]
-        },
-        {
-          "links": [
+            },
             {
               "id": "x73pmqdg",
               "name": "세금계산",
               "url": "https://yangji-madang.github.io/SLGFC/consult/tax_simul.html",
               "type": "view"
+            },
+            {
+              "id": "xu7dvetb",
+              "name": "시중은행금리표",
+              "url": "https://yangji-madang.github.io/SLGFC/Savings_Rates.html",
+              "type": "admin"
             }
           ]
+        },
+        {
+          "links": []
+        },
+        {
+          "divider": true,
+          "links": []
         },
         {
           "links": [
@@ -331,11 +372,7 @@
               "name": "정보지원정책 내회사찾기",
               "url": "https://yangji-madang.github.io/SLGFC/consult/gov_support_match.html",
               "type": "view"
-            }
-          ]
-        },
-        {
-          "links": [
+            },
             {
               "id": "xrzuosbw",
               "name": "고용유지지원금 보기",
@@ -349,6 +386,10 @@
               "type": "admin"
             }
           ]
+        },
+        {
+          "divider": true,
+          "links": []
         },
         {
           "links": [
@@ -385,6 +426,10 @@
           ]
         },
         {
+          "divider": true,
+          "links": []
+        },
+        {
           "links": [
             {
               "id": "xc40hjaz",
@@ -395,14 +440,7 @@
           ]
         },
         {
-          "links": [
-            {
-              "id": "xu7dvetb",
-              "name": "시중은행금리표",
-              "url": "https://yangji-madang.github.io/SLGFC/Savings_Rates.html",
-              "type": "admin"
-            }
-          ]
+          "links": []
         }
       ]
     },
